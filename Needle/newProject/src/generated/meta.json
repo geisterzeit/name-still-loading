@@ -1,0 +1,22 @@
+{
+  "sceneName": "Scene",
+  "meta": null,
+  "absolutePath": "https://localhost:3000",
+  "deployOnly": false,
+  "needleEditor": {
+    "enabled": true,
+    "components": true,
+    "materials": true,
+    "sceneCamera": false
+  },
+  "gzip": false,
+  "generator": "Unity 6000.0.23f1, Needle Engine Integration @3.48.3",
+  "developmentBuild": false,
+  "allowHotReload": true,
+  "facebookInstantGames": null,
+  "license": {
+    "id": "",
+    "key": ""
+  },
+  "useRapier": true
+}
