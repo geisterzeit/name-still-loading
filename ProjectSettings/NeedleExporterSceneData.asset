@@ -17,8 +17,5 @@ MonoBehaviour:
     Projects:
     - ProjectPath: Needle/newProject
     BuilderScene: 
-  - Path: Assets/scene/NikosTestumgebung.unity
-    Projects: []
-    BuilderScene: 
   Projects:
   - ProjectPath: Needle/newProject

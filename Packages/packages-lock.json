@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.merry-yellow.code-assist": {
-      "version": "file:com.merry-yellow.code-assist",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "com.needle.engine-exporter": {
       "version": "3.48.3",
       "depth": 1,
@@ -86,18 +80,9 @@
     },
     "com.unity.ext.nunit": {
       "version": "2.0.5",
-      "depth": 2,
+      "depth": 3,
       "source": "registry",
       "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.ide.visualstudio": {
-      "version": "2.0.22",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.test-framework": "1.1.9"
-      },
       "url": "https://packages.unity.com"
     },
     "com.unity.mathematics": {
@@ -189,7 +174,7 @@
     },
     "com.unity.test-framework": {
       "version": "1.4.5",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "2.0.3",
