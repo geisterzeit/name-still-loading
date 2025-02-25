@@ -24,5 +24,13 @@ MonoBehaviour:
     Projects:
     - ProjectPath: Needle/newProject
     BuilderScene: 
+  - Path: Assets/TestScene.unity
+    Projects:
+    - ProjectPath: Needle/newProject
+    BuilderScene: 
+  - Path: Assets/scene/TestJan.unity
+    Projects:
+    - ProjectPath: Needle/newProject
+    BuilderScene: 
   Projects:
   - ProjectPath: Needle/newProject
