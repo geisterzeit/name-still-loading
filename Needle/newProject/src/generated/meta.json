@@ -1,5 +1,5 @@
 {
-  "sceneName": "Scene",
+  "sceneName": "Nikos AR Testumgebung",
   "meta": null,
   "absolutePath": "https://localhost:3000",
   "deployOnly": false,
@@ -9,14 +9,13 @@
     "materials": true,
     "sceneCamera": false
   },
-  "gzip": false,
-  "generator": "Unity 6000.0.23f1, Needle Engine Integration @3.48.3",
   "developmentBuild": false,
+  "generator": "Unity 6000.0.23f1, Needle Engine Integration @4.2.4",
+  "gzip": false,
   "allowHotReload": true,
-  "facebookInstantGames": null,
   "license": {
-    "id": "",
-    "key": ""
+    "team": "org_3v8ntl5p8bgg"
   },
+  "facebookInstantGames": null,
   "useRapier": true
 }
