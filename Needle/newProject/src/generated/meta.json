@@ -1,5 +1,5 @@
 {
-  "sceneName": "Nikos AR Testumgebung",
+  "sceneName": "Test Jan",
   "meta": null,
   "absolutePath": "https://localhost:3000",
   "deployOnly": false,
@@ -14,7 +14,7 @@
   "gzip": false,
   "allowHotReload": true,
   "license": {
-    "team": "org_3v8ntl5p8bgg"
+    "team": "org_fwhpxsp4c4m0"
   },
   "facebookInstantGames": null,
   "useRapier": true
