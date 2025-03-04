@@ -1,10 +1,13 @@
 import { Behaviour, GameObject, serializable } from "@needle-tools/engine";
 import { Vector3 } from "three";
 import { EnemyManager } from "./enemies/EnemyManager";
+import { Enemy } from "./enemies/Enemy";
 
 export class Tower extends Behaviour {
   @serializable()
   range: number = 2;
+  @serializable()
+  damage: number = 50;
   @serializable()
   fireRatePerSecond: number = 1;
   private fireCooldown: number = 0;
@@ -52,13 +55,11 @@ export class Tower extends Behaviour {
 
     // Destroy enemy if it is too close
     if (distance < this.range) {
-      this.destroyEnemy(target);
+      const enemy = target.getComponent(Enemy);
+      if (enemy) {
+        enemy.takeDamage(this.damage);
+      }
       return;
     }
-  }
-
-  destroyEnemy(enemy: GameObject) {
-    GameObject.destroy(enemy);
-    this.enemiesInRange = this.enemiesInRange.filter((e) => e !== enemy);
   }
 }
