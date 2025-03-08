@@ -1,5 +1,4 @@
-import { AssetReference, Behaviour, serializable, WaitForSeconds } from "@needle-tools/engine";
-import { Vector3 } from "three";
+import { AssetReference, Behaviour, Text , serializable } from "@needle-tools/engine";
 import { Wegpunkte } from "./Wegpunkte";
 
 async function waitForSeconds(seconds: number): Promise<void> {
@@ -20,13 +19,22 @@ export class Spawner extends Behaviour
     @serializable()
     afterWaveCond: number = 5;
 
-    async spawnWave(): Promise<void>
+    /**Aktuelle Welle Display */
+    @serializable(Text)
+    currentWaveDisplay!: Text;
+
+    private inWave: boolean = false;
+
+    private async spawnWave(): Promise<void>
     {
         let lastCount = 1;  // Standardanzahl Gegner
         let lastInterval = 1; // Standardintervall
+        this.inWave = true;
 
         for(let waveIndex = 0; waveIndex < this.enemies.length; waveIndex++)
         {
+            this.currentWaveDisplay.text = `Welle: ${waveIndex+1}`;
+            
             const prefab = this.enemies[waveIndex];
             if(!prefab) 
             { 
@@ -47,9 +55,14 @@ export class Spawner extends Behaviour
             await waitForSeconds(this.afterWaveCond);
             console.log(`Wave ${waveIndex + 1} beendet!`);
         }
+        this.inWave = false;
     }
 
-    start(): void {
-        this.spawnWave();
+    public initiateWave(): void
+    {
+        if(!this.inWave)
+        {
+            this.spawnWave();
+        }
     }
 }

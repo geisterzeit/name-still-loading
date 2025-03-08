@@ -11,8 +11,8 @@ namespace Needle.Typescript.GeneratedComponents
 		public float[] @enemyCount = new float[]{ };
 		public float[] @spawnInterval = new float[]{ };
 		public float @afterWaveCond = 5f;
-		public void spawnWave(){}
-		public void start(){}
+		public UnityEngine.UI.Text @currentWaveDisplay;
+		public void initiateWave(){}
 	}
 }
 
