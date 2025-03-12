@@ -10,9 +10,11 @@ namespace Needle.Typescript.GeneratedComponents
 		public UnityEngine.Transform[] @enemies = new UnityEngine.Transform[]{ };
 		public float[] @enemyCount = new float[]{ };
 		public float[] @spawnInterval = new float[]{ };
+		public float @currentWave = 0f;
 		public float @afterWaveCond = 5f;
 		public UnityEngine.UI.Text @currentWaveDisplay;
 		public void initiateWave(){}
+		public void update(){}
 	}
 }
 

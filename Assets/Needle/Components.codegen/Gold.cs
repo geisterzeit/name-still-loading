@@ -8,7 +8,7 @@ namespace Needle.Typescript.GeneratedComponents
 	public partial class Gold : UnityEngine.MonoBehaviour
 	{
 		public void start(){}
-		public void updateUI(){}
+		public void update(){}
 	}
 }
 

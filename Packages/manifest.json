@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.needle.engine-exporter": "4.2.4",
+    "com.needle.engine-exporter": "4.2.5",
     "com.needle.engine-samples": "0.20.1",
     "com.unity.cloud.ktx.webgl-2023": "1.0.1",
     "com.unity.ide.visualstudio": "2.0.22",

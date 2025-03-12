@@ -1,5 +1,5 @@
 {
-  "sceneName": "Test Jan",
+  "sceneName": "Game",
   "meta": null,
   "absolutePath": "https://localhost:3000",
   "deployOnly": false,
@@ -10,7 +10,7 @@
     "sceneCamera": false
   },
   "developmentBuild": false,
-  "generator": "Unity 6000.0.23f1, Needle Engine Integration @4.2.4",
+  "generator": "Unity 6000.0.23f1, Needle Engine Integration @4.2.5",
   "gzip": false,
   "allowHotReload": true,
   "license": {
