@@ -1,10 +1,14 @@
-import { Behaviour, serializable } from "@needle-tools/engine";
+import { Behaviour, serializable, syncField } from "@needle-tools/engine";
 import { EnemyManager } from "./EnemyManager";
 import { Gold } from "../Gold";
 
 export class Enemy extends Behaviour {
   @serializable()
+  @syncField()
   health: number = 100;
+
+  @serializable()
+  deathGold: number = 10;
 
   start(): void {
     EnemyManager.registerEnemy(this.gameObject);
@@ -24,6 +28,6 @@ export class Enemy extends Behaviour {
 
   private die(): void {
     this.gameObject.destroy();
-    Gold.addGold(10);
+    Gold.addGold(this.deathGold);
   }
 }
