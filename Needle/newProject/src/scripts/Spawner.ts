@@ -9,23 +9,20 @@ import {
 import { Wegpunkte } from "./Wegpunkte";
 import { Gold } from "./Gold";
 import { EnemyManager } from "./enemies/EnemyManager";
+import { WAVES } from "./Wave";
 
 async function waitForSeconds(seconds: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000)); // Sekunden in Millisekunden umwandeln
 }
 
-export class Spawner extends Behaviour 
-{
+export class Spawner extends Behaviour {
   /** Das Prefab des Gegners, das in dieser Welle gespawnt wird */
   @serializable(AssetReference)
   enemies: AssetReference[] = [];
-  @serializable()
-  enemyCount: number[] = [];
-  @serializable()
-  spawnInterval: number[] = [];
 
   @syncField()
   private currentWave: number = 0;
+  private currentEnemyCount: number = 0;
 
   /**Aktuelle Welle Display */
   @serializable(Text)
@@ -38,59 +35,60 @@ export class Spawner extends Behaviour
     this.currentWave = 0;
   }
 
-  private async spawnWave(): Promise<void> 
-  {
-    let lastCount = 1; // Standardanzahl Gegner
-    let lastInterval = 1; // Standardintervall
+  private async spawnWave(): Promise<void> {
     this.currentState = "spawning";
+    const waveObject = WAVES[this.currentWave];
 
-    const enemyThisWave = this.enemies[this.currentWave];
+    console.log(
+      `Starte Wave ${this.currentWave + 1}: ${
+        waveObject.enemies.length
+      } Gegner, ${waveObject.interval}s Abstand`
+    );
 
-    lastCount = this.enemyCount[this.currentWave] ?? lastCount;
-    lastInterval = this.spawnInterval[this.currentWave] ?? lastInterval;
-    console.log(`Starte Wave ${this.currentWave + 1}: ${lastCount} Gegner, ${lastInterval}s Abstand`);
+    for (let i = 0; i < waveObject.enemies.length; i++) {
+      const enemyTypeId = waveObject.enemies[this.currentEnemyCount];
+      const enemyThisWave = this.enemies[enemyTypeId];
 
-    for (let i = 0; i < lastCount; i++) 
-    {
       await enemyThisWave.instantiateSynced({
         position: Wegpunkte.points[0],
         parent: this.gameObject,
       });
-      await waitForSeconds(lastInterval);
-    }    
+
+      this.currentEnemyCount++;
+      await waitForSeconds(waveObject.interval);
+    }
     this.currentState = "enemiesAlive";
   }
 
-  public initiateWave(): void 
-  {
+  public initiateWave(): void {
     console.log(SyncedRoom);
-    if(this.currentState == "beforeWave" || this.currentState == "betweenWaves") 
-    {
+    if (
+      this.currentState == "beforeWave" ||
+      this.currentState == "betweenWaves"
+    ) {
       this.spawnWave();
     }
   }
 
-  private gonextWave(): void
-  {
+  private gonextWave(): void {
     this.currentState = "betweenWaves";
-    
-    Gold.addGold(50*(this.currentWave+1)); //TODO Balancing?
 
-    if(this.enemies.length > (this.currentWave+1))
-    {
+    Gold.addGold(50 * (this.currentWave + 1)); //TODO Balancing?
+
+    if (WAVES.length > this.currentWave + 1) {
       this.currentWave++;
-    }
-    else
-    {
-      console.log("Hurra du bist durch, fange wieder von Wave 1 an :) (Bitte töte mich)")
+    } else {
+      console.log(
+        "Hurra du bist durch, fange wieder von Wave 1 an :) (Bitte töte mich)"
+      );
       this.currentWave = 0;
     }
+    this.currentEnemyCount = 0;
   }
 
-  update(): void 
-  {
-    this.currentWaveDisplay.text = `Welle: ${this.currentWave+1}`;
-    if(EnemyManager.enemies.length == 0 && this.currentState == "enemiesAlive")
+  update(): void {
+    this.currentWaveDisplay.text = `Welle: ${this.currentWave + 1}`;
+    if (EnemyManager.enemies.length == 0 && this.currentState == "enemiesAlive")
       this.gonextWave();
-  }    
+  }
 }
