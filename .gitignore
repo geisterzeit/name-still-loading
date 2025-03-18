@@ -78,3 +78,4 @@ UpgradeLog*.htm
 **/dist/assets/mesh_lod_*.glb
 **/package-lock.json
 **/needle.lock
+.vscode
