@@ -10,6 +10,7 @@ namespace Needle.Typescript.GeneratedComponents
 		public float @health = 100f;
 		public float @deathGold = 10f;
 		public void start(){}
+		public void update(){}
 		public void onDestroy(){}
 		public void takeDamage(float @damage){}
 	}

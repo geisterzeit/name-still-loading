@@ -1,4 +1,4 @@
-import { Behaviour, serializable, syncField } from "@needle-tools/engine";
+import { Behaviour, serializable, syncField, Text } from "@needle-tools/engine";
 import { EnemyManager } from "./EnemyManager";
 import { Gold } from "../Gold";
 
@@ -7,11 +7,20 @@ export class Enemy extends Behaviour {
   @syncField()
   health: number = 100;
 
+  private healthDisplay: Text | null = null;
+
   @serializable()
   deathGold: number = 10;
 
   start(): void {
     EnemyManager.registerEnemy(this.gameObject);
+    this.healthDisplay = this.gameObject.getComponentInChildren(Text);
+  }
+
+  update(): void {
+    if(this.healthDisplay)
+      this.healthDisplay.text = this.health.toString();
+    console.log(this.healthDisplay);
   }
 
   onDestroy(): void {

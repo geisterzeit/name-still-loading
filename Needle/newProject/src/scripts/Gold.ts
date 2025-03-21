@@ -18,7 +18,7 @@ export class Gold extends Behaviour {
   {
     if (Gold.instance) 
     {
-      console.log(amount + "wurde hinzugefügt");
+      //console.log(amount + "wurde hinzugefügt");
       Gold.instance.currentGold += amount;
     }
   }
