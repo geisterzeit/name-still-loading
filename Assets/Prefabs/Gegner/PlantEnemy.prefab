@@ -234,6 +234,7 @@ MonoBehaviour:
   health: 100
   healthDisplay: {fileID: 0}
   deathGold: 10
+  type: 2
 --- !u!114 &5272259340430423386
 MonoBehaviour:
   m_ObjectHideFlags: 0

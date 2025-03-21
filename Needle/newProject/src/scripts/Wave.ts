@@ -5,7 +5,7 @@ type Wave = {
 
 export const WAVES: Wave[] = [
   {
-    enemies: [0, 1, 2, 1, 0],
+    enemies: [0, 1, 2, 1, 0, 3],
     interval: 1,
   },
   {

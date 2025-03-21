@@ -2,6 +2,8 @@ import { Behaviour, GameObject, serializable } from "@needle-tools/engine";
 import { Vector3 } from "three";
 import { EnemyManager } from "./enemies/EnemyManager";
 import { Enemy } from "./enemies/Enemy";
+import { calculateDamage } from "./element-system/DamageUtils";
+import { ElementType } from "./element-system/ElementType";
 
 export class Tower extends Behaviour {
   @serializable()
@@ -57,7 +59,9 @@ export class Tower extends Behaviour {
     if (distance < this.range) {
       const enemy = target.getComponent(Enemy);
       if (enemy) {
-        enemy.takeDamage(this.damage);
+        enemy.takeDamage(
+          calculateDamage(this.damage, ElementType.FIRE, enemy.type)
+        );
       }
       return;
     }
