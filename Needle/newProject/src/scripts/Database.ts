@@ -1,36 +1,79 @@
 import { Behaviour, Text } from "@needle-tools/engine";
-import { MongoClient, ServerApiVersion } from "mongodb";
 
-const DATABASE_URL =  "mongodb+srv://admin:admin@cluster-still-loading.doubh.mongodb.net/?retryWrites=true&w=majority&appName=cluster-still-loading"
+const DATABASE_URL = "https://worker-still-loading.mear.workers.dev/"
+const HEADERS = {
+    'Content-Type': 'application/json'
+}
+
+interface TowerStats {
+    [towerId: string]: number;
+}
 
 export class Database extends Behaviour {
-    private client: MongoClient | undefined;
+    private username: string = ""
+    private towerStats: TowerStats = {};
 
-    async init() : Promise<void> {
-        // this.client = new MongoClient(DATABASE_URL)
-        // this.client.connect()
-        // await this.client.connect()
-        // this.client = new MongoClient(DATABASE_URL, {
-        //     serverApi: {
-        //         version: ServerApiVersion.v1,
-        //         strict: true,
-        //         deprecationErrors: true,
-        //     }
-        // });
-        // await this.client.connect()
+    async init(username: string): Promise<Database> {
+        this.username = username;
+        await this.loadUserData();
+        return this;
     }
 
-    public async getUserKillCountForTowerId(userId : string, towerId : string) : Promise<number> {
-        return 0;
-        // try {
-        //     // Connect the client to the server	(optional starting in v4.7)
-        //     await this.client.connect();
-        //     // Send a ping to confirm a successful connection
-        //     await client.db("admin").command({ ping: 1 });
-        //     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-        // } finally {
-        //     // Ensures that the client will close when you finish/error
-        //     await client.close();
-        // }
+    private async loadUserData() {
+        try {
+            const response = await Database.getValue(this.username);
+            if (response.ok) {
+                const data = await response.json();
+                this.towerStats = data || {};
+                console.log(this.towerStats)
+            } else {
+                this.towerStats = {};
+            }
+        } catch (error) {
+            console.error("Failed to load user data:", error);
+            this.towerStats = {};
+        }
+    }
+
+    async getUserTowerStats(): Promise<TowerStats> {
+        return this.towerStats;
+    }
+
+    async getTowerKillCount(towerId: string): Promise<number> {
+        return this.towerStats[towerId] || 0;
+    }
+
+    async updateTowerKills(towerId: string, additionalKills: number): Promise<number> {
+        if (!this.towerStats[towerId]) {
+            this.towerStats[towerId] = 0;
+        }
+
+        this.towerStats[towerId] += additionalKills;
+
+        await this.saveUserData();
+
+        return this.towerStats[towerId];
+    }
+
+    private async saveUserData() {
+        try {
+            if (this.username) {
+                await Database.setValue(this.username, this.towerStats);
+            }
+        } catch (error) {
+            console.error("Failed to save user data:", error);
+        }
+    }
+
+    static async getValue(key: string) {
+        return fetch(`${DATABASE_URL}?key=${encodeURIComponent(key)}`, { headers: HEADERS });
+    }
+
+    static async setValue(key: string, value: any) {
+        return fetch(`${DATABASE_URL}?key=${encodeURIComponent(key)}`, {
+            method: 'PUT',
+            headers: HEADERS,
+            body: JSON.stringify(value)
+        });
     }
 }

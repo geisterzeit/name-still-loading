@@ -79,4 +79,4 @@ UpgradeLog*.htm
 **/package-lock.json
 **/needle.lock
 .vscode
-**/poster.webp
+Needle/newProject/include/poster.webp
