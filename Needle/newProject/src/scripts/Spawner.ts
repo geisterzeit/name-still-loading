@@ -9,7 +9,7 @@ import {
 import { Wegpunkte } from "./Wegpunkte";
 import { Gold } from "./Gold";
 import { EnemyManager } from "./enemies/EnemyManager";
-import { WAVES } from "./Wave";
+import WaveManager from "./WaveManager";
 
 async function waitForSeconds(seconds: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000)); // Sekunden in Millisekunden umwandeln
@@ -30,6 +30,7 @@ export class Spawner extends Behaviour {
 
   @syncField()
   private currentState: String = "beforeWave";
+  private waveManager: WaveManager = new WaveManager();
 
   start(): void {
     this.currentWave = 0;
@@ -37,11 +38,10 @@ export class Spawner extends Behaviour {
 
   private async spawnWave(): Promise<void> {
     this.currentState = "spawning";
-    const waveObject = WAVES[this.currentWave];
+    const waveObject = this.waveManager.getWave()
 
     console.log(
-      `Starte Wave ${this.currentWave + 1}: ${
-        waveObject.enemies.length
+      `Starte Wave ${this.currentWave + 1}: ${waveObject.enemies.length
       } Gegner, ${waveObject.interval}s Abstand`
     );
 
@@ -73,16 +73,9 @@ export class Spawner extends Behaviour {
   private gonextWave(): void {
     this.currentState = "betweenWaves";
 
-    Gold.addGold(50 * (this.currentWave + 1)); //TODO Balancing?
+    Gold.addGold(50 * (this.currentWave + 1))
 
-    if (WAVES.length > this.currentWave + 1) {
-      this.currentWave++;
-    } else {
-      console.log(
-        "Hurra du bist durch, fange wieder von Wave 1 an :) (Bitte töte mich)"
-      );
-      this.currentWave = 0;
-    }
+    this.waveManager.incrementWave()
     this.currentEnemyCount = 0;
   }
 
