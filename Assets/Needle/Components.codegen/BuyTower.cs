@@ -8,8 +8,8 @@ namespace Needle.Typescript.GeneratedComponents
 	public partial class BuyTower : UnityEngine.MonoBehaviour
 	{
 		public UnityEngine.Transform @tower;
+		public float @towerCost = 50f;
 		public void onPointerClick(UnityEngine.EventSystems.PointerEventData @_args){}
-		public void lockIn(){}
 	}
 }
 

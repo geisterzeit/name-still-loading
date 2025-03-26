@@ -16,7 +16,7 @@ export class Tower extends Behaviour {
   private enemiesInRange: GameObject[] = [];
 
   start(): void {
-    console.log("Tower startet!");
+    //console.log("Tower startet!");
   }
 
   update(): void {
@@ -44,7 +44,7 @@ export class Tower extends Behaviour {
   }
 
   shoot(target: GameObject) {
-    console.log("Tower schießt auf", target.name);
+    //console.log("Tower schießt auf", target.name);
 
     // Get positions using Needle Engine's positioning system
     const towerPosition = this.gameObject.position; // Tower's position

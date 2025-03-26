@@ -61,7 +61,6 @@ export class Spawner extends Behaviour {
   }
 
   public initiateWave(): void {
-    console.log(SyncedRoom);
     if (
       this.currentState == "beforeWave" ||
       this.currentState == "betweenWaves"

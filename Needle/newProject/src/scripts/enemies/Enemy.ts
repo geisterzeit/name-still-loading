@@ -1,14 +1,17 @@
-import { Behaviour, serializable, syncField, Text } from "@needle-tools/engine";
+import { Behaviour, Image, serializable, syncField, ObjectOptions, RectTransform } from "@needle-tools/engine";
 import { EnemyManager } from "./EnemyManager";
 import { Gold } from "../Gold";
 import { ElementType } from "../element-system/ElementType";
+import { Vector3 } from "three";
 
 export class Enemy extends Behaviour {
   @serializable()
   @syncField()
-  health: number = 100;
+  health: number = 150;
 
-  private healthDisplay: Text | null = null;
+  private maxHealth = 0;
+  private healthDisplay: RectTransform | null = null;
+  private backgroundDisplay: RectTransform | null = null;
 
   @serializable()
   deathGold: number = 10;
@@ -17,14 +20,10 @@ export class Enemy extends Behaviour {
   type: number = ElementType.FIRE;
 
   start(): void {
+    this.maxHealth = this.health;
     EnemyManager.registerEnemy(this.gameObject);
-    this.healthDisplay = this.gameObject.getComponentInChildren(Text);
-  }
-
-  update(): void {
-    if(this.healthDisplay)
-      this.healthDisplay.text = this.health.toString();
-    console.log(this.healthDisplay);
+    this.backgroundDisplay = this.gameObject.getComponentsInChildren(RectTransform)[1];
+    this.healthDisplay = this.gameObject.getComponentsInChildren(RectTransform)[2];
   }
 
   onDestroy(): void {
@@ -32,7 +31,12 @@ export class Enemy extends Behaviour {
   }
 
   takeDamage(damage: number): void {
+    let oldHealth = this.health;
     this.health -= damage;
+    if(this.healthDisplay)
+    {
+      this.healthDisplay.scale.add(new Vector3((this.health / this.maxHealth - oldHealth / this.maxHealth),0,0));
+    }
 
     if (this.health <= 0) {
       this.die();

@@ -11,7 +11,7 @@ export class Gold extends Behaviour {
   start(): void {
     this.goldDisplay = this.gameObject.getComponent(Text);
     Gold.instance = this;
-    //Gold.addGold(150);
+    Gold.addGold(150);
   }
 
   public static addGold(amount: number): void 
@@ -21,6 +21,11 @@ export class Gold extends Behaviour {
       //console.log(amount + "wurde hinzugefügt");
       Gold.instance.currentGold += amount;
     }
+  }
+
+  public static getGold(): number
+  {
+    return Gold.instance.currentGold;
   }
 
   update(): void 
