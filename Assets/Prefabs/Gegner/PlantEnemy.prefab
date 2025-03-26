@@ -401,8 +401,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 150
-  deathGold: 10
+  shieldHealth: 0
   type: 2
+  deathGold: 10
 --- !u!114 &5272259340430423386
 MonoBehaviour:
   m_ObjectHideFlags: 0

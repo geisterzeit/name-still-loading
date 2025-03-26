@@ -3,8 +3,8 @@ type Wave = {
   interval: number;
 };
 
-const BASE_ENEMY_TYPES = [0, 1, 2]
-const SPECIAL_ENEMY_TYPES = [3, 4, 5]
+const BASE_ENEMY_TYPES = [0, 1, 2];
+const SPECIAL_ENEMY_TYPES = [3, 4, 5];
 
 class WaveManager {
   private waveCount = 0;
@@ -14,27 +14,27 @@ class WaveManager {
   constructor() {
     this.selectedBaseEnemyTypes = [
       this.pickRandomBaseEnemyType(),
-      this.pickRandomBaseEnemyType()
-    ]
+      this.pickRandomBaseEnemyType(),
+    ];
     this.selectedSpecialEnemyTypes = [
       this.pickRandomSpecialEnemyType(),
-      this.pickRandomSpecialEnemyType()
-    ]
+      this.pickRandomSpecialEnemyType(),
+    ];
 
-    console.log(this.selectedBaseEnemyTypes)
-    console.log(this.selectedSpecialEnemyTypes)
+    console.log(this.selectedBaseEnemyTypes);
+    console.log(this.selectedSpecialEnemyTypes);
   }
 
-  private pickRandomBaseEnemyType(): typeof BASE_ENEMY_TYPES[number] {
-    return this.getRandomElement(BASE_ENEMY_TYPES)
+  private pickRandomBaseEnemyType(): (typeof BASE_ENEMY_TYPES)[number] {
+    return this.getRandomElement(BASE_ENEMY_TYPES);
   }
 
-  private pickRandomSpecialEnemyType(): typeof SPECIAL_ENEMY_TYPES[number] {
-    return this.getRandomElement(SPECIAL_ENEMY_TYPES)
+  private pickRandomSpecialEnemyType(): (typeof SPECIAL_ENEMY_TYPES)[number] {
+    return this.getRandomElement(SPECIAL_ENEMY_TYPES);
   }
 
   incrementWave() {
-    this.waveCount++
+    this.waveCount++;
   }
 
   private getRandomElement<T>(array: Array<T>): T {
@@ -44,58 +44,59 @@ class WaveManager {
   }
 
   private shuffleArray<T>(array: Array<T>): Array<T> {
-    let copy = array.slice()
+    let copy = array.slice();
     let currentIndex = copy.length;
 
     while (currentIndex != 0) {
-
       let randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
 
       [copy[currentIndex], copy[randomIndex]] = [
-        copy[randomIndex], copy[currentIndex]];
+        copy[randomIndex],
+        copy[currentIndex],
+      ];
     }
-    return copy
+    return copy;
   }
 
   private getBaseEenemiesForWave(): Array<number> {
-    let baseEnemies: Array<number> = []
+    let baseEnemies: Array<number> = [];
     for (let i = 0; i < this.getWaveBaseEnemyCount(); i++) {
-      baseEnemies.push(this.getRandomElement(this.selectedBaseEnemyTypes))
+      baseEnemies.push(this.getRandomElement(this.selectedBaseEnemyTypes));
     }
     return baseEnemies;
   }
 
   private getSpecialEnemiesForWave(): Array<number> {
-    let baseEnemies: Array<number> = []
+    let baseEnemies: Array<number> = [];
 
     for (let i = 0; i < this.getWaveSpecialEnemyCount(); i++) {
-      baseEnemies.push(this.getRandomElement(this.selectedSpecialEnemyTypes))
+      baseEnemies.push(this.getRandomElement(this.selectedSpecialEnemyTypes));
     }
 
-    return baseEnemies
+    return baseEnemies;
   }
 
   private getWaveBaseEnemyCount(): number {
-    return 20 + ((20 * this.waveCount) * 0.7)
+    return 20 + 20 * this.waveCount * 0.7;
   }
 
   private getWaveSpecialEnemyCount(): number {
-    return (8 * this.waveCount)
+    return 8 * this.waveCount;
   }
 
   getWave() {
     const interval = this.waveCount < 3 ? 1 : 0.5;
 
-    let enemies: Array<number> = []
-    enemies.push(...this.getBaseEenemiesForWave())
+    let enemies: Array<number> = [];
+    enemies.push(...this.getBaseEenemiesForWave());
 
     if (this.waveCount > 3) {
-      const specialEnemies = this.getSpecialEnemiesForWave()
-      enemies.push(...specialEnemies)
+      const specialEnemies = this.getSpecialEnemiesForWave();
+      enemies.push(...specialEnemies);
     }
 
-    return { interval: interval, enemies: this.shuffleArray(enemies) }
+    return { interval: interval, enemies: this.shuffleArray(enemies) };
   }
 }
 

@@ -8,8 +8,9 @@ namespace Needle.Typescript.GeneratedComponents
 	public partial class Enemy : UnityEngine.MonoBehaviour
 	{
 		public float @health = 150f;
-		public float @deathGold = 10f;
+		public float @shieldHealth = 100f;
 		public float @type;
+		public float @deathGold = 10f;
 		public void start(){}
 		public void onDestroy(){}
 		public void takeDamage(float @damage){}

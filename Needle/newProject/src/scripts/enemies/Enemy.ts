@@ -1,4 +1,9 @@
-import { Behaviour, Image, serializable, syncField, ObjectOptions, RectTransform } from "@needle-tools/engine";
+import {
+  Behaviour,
+  serializable,
+  syncField,
+  RectTransform,
+} from "@needle-tools/engine";
 import { EnemyManager } from "./EnemyManager";
 import { Gold } from "../Gold";
 import { ElementType } from "../element-system/ElementType";
@@ -9,6 +14,12 @@ export class Enemy extends Behaviour {
   @syncField()
   health: number = 150;
 
+  @serializable()
+  shieldHealth: number = 100;
+
+  @serializable()
+  type: number = ElementType.FIRE;
+
   private maxHealth = 0;
   private healthDisplay: RectTransform | null = null;
   private backgroundDisplay: RectTransform | null = null;
@@ -16,14 +27,13 @@ export class Enemy extends Behaviour {
   @serializable()
   deathGold: number = 10;
 
-  @serializable()
-  type: number = ElementType.FIRE;
-
   start(): void {
     this.maxHealth = this.health;
     EnemyManager.registerEnemy(this.gameObject);
-    this.backgroundDisplay = this.gameObject.getComponentsInChildren(RectTransform)[1];
-    this.healthDisplay = this.gameObject.getComponentsInChildren(RectTransform)[2];
+    this.backgroundDisplay =
+      this.gameObject.getComponentsInChildren(RectTransform)[1];
+    this.healthDisplay =
+      this.gameObject.getComponentsInChildren(RectTransform)[2];
   }
 
   onDestroy(): void {
@@ -32,10 +42,20 @@ export class Enemy extends Behaviour {
 
   takeDamage(damage: number): void {
     let oldHealth = this.health;
-    this.health -= damage;
-    if(this.healthDisplay)
-    {
-      this.healthDisplay.scale.add(new Vector3((this.health / this.maxHealth - oldHealth / this.maxHealth),0,0));
+    if (this.shieldHealth > 0) {
+      this.shieldHealth -= damage;
+    } else {
+      this.health -= damage;
+    }
+
+    if (this.healthDisplay) {
+      this.healthDisplay.scale.add(
+        new Vector3(
+          this.health / this.maxHealth - oldHealth / this.maxHealth,
+          0,
+          0
+        )
+      );
     }
 
     if (this.health <= 0) {

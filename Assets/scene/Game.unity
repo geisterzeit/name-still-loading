@@ -1114,6 +1114,9 @@ MonoBehaviour:
   - {fileID: 7750147770511016565, guid: 1ea04f911485dda4d8dcaf20e3ff65e6, type: 3}
   - {fileID: 7750147770511016565, guid: bd9fb9bad6b6ecb4583a5e99f4d2c088, type: 3}
   - {fileID: 7750147770511016565, guid: 08db47c662c4ab744a1666c1a6e405b9, type: 3}
+  - {fileID: 7750147770511016565, guid: 3f2771b0a61ebda419eabd9f868b55e2, type: 3}
+  - {fileID: 7750147770511016565, guid: a5a4309de9fc0fa409b6e58043f09690, type: 3}
+  - {fileID: 7750147770511016565, guid: f16f4d68f45ab97478d8c6e3edff43e3, type: 3}
   currentWaveDisplay: {fileID: 1641051018}
 --- !u!1001 &532256699
 PrefabInstance:
@@ -1331,7 +1334,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.05818904, y: -0.889058, z: 0.11798185, w: 0.43848634}
   m_LocalPosition: {x: 9.75, y: 3.84, z: 7.48}
-  m_LocalScale: {x: 1.0000215, y: 1, z: 1.0000017}
+  m_LocalScale: {x: 1.0000219, y: 1, z: 1.0000017}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1619,7 +1622,7 @@ MonoBehaviour:
   AutoExport: 1
   AutoCompress: 1
   Dependencies: []
-  CloudName: 
+  CloudName: Game
   CloudTeam: org_fwhpxsp4c4m0
 --- !u!4 &784234924
 Transform:

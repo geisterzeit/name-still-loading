@@ -35,10 +35,18 @@ export class Tower extends Behaviour {
   detectEnemiesInRange() {
     this.enemiesInRange = [];
 
-    for (let enemy of EnemyManager.enemies) {
-      const distance = this.gameObject.position.distanceTo(enemy.position);
-      if (distance <= this.range) {
-        this.enemiesInRange.push(enemy);
+    for (let target of EnemyManager.enemies) {
+      const enemy = target.getComponent(Enemy);
+
+      if (enemy) {
+        // Skip invisible enemies
+        if (enemy.type === ElementType.INVISIBLE) {
+          continue;
+        }
+        const distance = this.gameObject.position.distanceTo(target.position);
+        if (distance <= this.range) {
+          this.enemiesInRange.push(target);
+        }
       }
     }
   }
