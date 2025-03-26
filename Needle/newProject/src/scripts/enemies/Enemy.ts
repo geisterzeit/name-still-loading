@@ -21,19 +21,23 @@ export class Enemy extends Behaviour {
   type: number = ElementType.FIRE;
 
   private maxHealth = 0;
+  private maxShield = 0;
   private healthDisplay: RectTransform | null = null;
-  private backgroundDisplay: RectTransform | null = null;
+  private shieldDisplay: RectTransform | null = null;
 
   @serializable()
   deathGold: number = 10;
 
   start(): void {
     this.maxHealth = this.health;
+    this.maxShield = this.shieldHealth;
     EnemyManager.registerEnemy(this.gameObject);
-    this.backgroundDisplay =
-      this.gameObject.getComponentsInChildren(RectTransform)[1];
     this.healthDisplay =
       this.gameObject.getComponentsInChildren(RectTransform)[2];
+    this.shieldDisplay =
+      this.gameObject.getComponentsInChildren(RectTransform)[3];
+
+    console.log(this.gameObject.getComponentsInChildren(RectTransform));
   }
 
   onDestroy(): void {
@@ -42,12 +46,22 @@ export class Enemy extends Behaviour {
 
   takeDamage(damage: number): void {
     let oldHealth = this.health;
+    let oldShield = this.shieldHealth;
     if (this.shieldHealth > 0) {
       this.shieldHealth -= damage;
     } else {
       this.health -= damage;
     }
 
+    if (this.shieldDisplay) {
+      this.shieldDisplay.scale.add(
+        new Vector3(
+          this.shieldHealth / this.maxShield - oldShield / this.maxShield,
+          0,
+          0
+        )
+      );
+    }
     if (this.healthDisplay) {
       this.healthDisplay.scale.add(
         new Vector3(
