@@ -67,8 +67,9 @@ export class Tower extends Behaviour {
     if (distance < this.range) {
       const enemy = target.getComponent(Enemy);
       if (enemy) {
+        // TODO: Put actual Tower id
         enemy.takeDamage(
-          calculateDamage(this.damage, ElementType.FIRE, enemy.type)
+          calculateDamage(this.damage, ElementType.FIRE, enemy.type, this.gameObject.name)
         );
       }
       return;

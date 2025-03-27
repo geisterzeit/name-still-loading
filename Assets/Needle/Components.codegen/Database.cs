@@ -7,7 +7,7 @@ namespace Needle.Typescript.GeneratedComponents
 {
 	public partial class Database : UnityEngine.MonoBehaviour
 	{
-		public void init(string @username){}
+		public void start(){}
 		public void getUserTowerStats(){}
 		public void getTowerKillCount(string @towerId){}
 		public void updateTowerKills(string @towerId, float @additionalKills){}

@@ -13,10 +13,12 @@ export class Database extends Behaviour {
     private username: string = ""
     private towerStats: TowerStats = {};
 
-    async init(username: string): Promise<Database> {
-        this.username = username;
-        await this.loadUserData();
-        return this;
+    static instance: Database = new Database()
+
+    start(): void {
+        // TODO: Get actual name
+        this.username = "defaultName";
+        this.loadUserData();
     }
 
     private async loadUserData() {
@@ -35,11 +37,11 @@ export class Database extends Behaviour {
         }
     }
 
-    async getUserTowerStats(): Promise<TowerStats> {
+    getUserTowerStats(): TowerStats {
         return this.towerStats;
     }
 
-    async getTowerKillCount(towerId: string): Promise<number> {
+    getTowerKillCount(towerId: string): number {
         return this.towerStats[towerId] || 0;
     }
 
