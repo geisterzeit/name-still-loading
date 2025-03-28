@@ -1,9 +1,4 @@
-type Wave = {
-  enemies: number[];
-  interval: number;
-};
-
-const BASE_ENEMY_TYPES = [0, 1, 2];
+const BASE_ENEMY_TYPES = [3];
 const SPECIAL_ENEMY_TYPES = [3, 4, 5];
 
 class WaveManager {

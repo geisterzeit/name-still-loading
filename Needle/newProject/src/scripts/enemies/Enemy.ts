@@ -36,8 +36,6 @@ export class Enemy extends Behaviour {
       this.gameObject.getComponentsInChildren(RectTransform)[2];
     this.shieldDisplay =
       this.gameObject.getComponentsInChildren(RectTransform)[3];
-
-    console.log(this.gameObject.getComponentsInChildren(RectTransform));
   }
 
   onDestroy(): void {
@@ -45,6 +43,7 @@ export class Enemy extends Behaviour {
   }
 
   takeDamage(damage: number): void {
+    console.log("Damage", damage);
     let oldHealth = this.health;
     let oldShield = this.shieldHealth;
     if (this.shieldHealth > 0) {

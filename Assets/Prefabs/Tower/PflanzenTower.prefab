@@ -192,6 +192,7 @@ MonoBehaviour:
   range: 2
   damage: 50
   fireRatePerSecond: 1
+  type: 2
 --- !u!114 &2779735417300283807
 MonoBehaviour:
   m_ObjectHideFlags: 0

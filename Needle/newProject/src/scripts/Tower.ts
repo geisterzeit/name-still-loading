@@ -12,6 +12,10 @@ export class Tower extends Behaviour {
   damage: number = 50;
   @serializable()
   fireRatePerSecond: number = 1;
+
+  @serializable()
+  type: number = ElementType.FIRE;
+
   private fireCooldown: number = 0;
   private enemiesInRange: GameObject[] = [];
 
@@ -39,8 +43,8 @@ export class Tower extends Behaviour {
       const enemy = target.getComponent(Enemy);
 
       if (enemy) {
-        // Skip invisible enemies
-        if (enemy.type === ElementType.INVISIBLE) {
+        // Skip enemies that are not damageable of current tower type
+        if (this.isEnemyImmune(enemy)) {
           continue;
         }
         const distance = this.gameObject.position.distanceTo(target.position);
@@ -52,8 +56,6 @@ export class Tower extends Behaviour {
   }
 
   shoot(target: GameObject) {
-    //console.log("Tower schießt auf", target.name);
-
     // Get positions using Needle Engine's positioning system
     const towerPosition = this.gameObject.position; // Tower's position
     const enemyPosition = target.position; // Enemy's position
@@ -68,11 +70,26 @@ export class Tower extends Behaviour {
       const enemy = target.getComponent(Enemy);
       if (enemy) {
         // TODO: Put actual Tower id
-        enemy.takeDamage(
-          calculateDamage(this.damage, ElementType.FIRE, enemy.type, this.gameObject.name)
+        const damage = calculateDamage(
+          this.damage,
+          this.type,
+          enemy.type,
+          this.gameObject.name
         );
+        console.log(this.type, enemy.type, distance, damage);
+        enemy.takeDamage(damage);
       }
       return;
     }
+  }
+
+  private isEnemyImmune(enemy: Enemy): boolean {
+    return (
+      (this.type !== ElementType.INVISIBLE &&
+        enemy.type === ElementType.INVISIBLE) ||
+      (this.type === ElementType.INVISIBLE &&
+        enemy.type !== ElementType.INVISIBLE) ||
+      (this.type !== ElementType.CANNON && enemy.shieldHealth > 0)
+    );
   }
 }

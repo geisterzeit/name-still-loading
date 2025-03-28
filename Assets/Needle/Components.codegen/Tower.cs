@@ -10,6 +10,7 @@ namespace Needle.Typescript.GeneratedComponents
 		public float @range = 2f;
 		public float @damage = 50f;
 		public float @fireRatePerSecond = 1f;
+		public float @type;
 		public void start(){}
 		public void update(){}
 		public void detectEnemiesInRange(){}
