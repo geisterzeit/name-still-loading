@@ -1,7 +1,7 @@
 import { Behaviour, syncField } from "@needle-tools/engine";
 
 const BASE_ENEMY_TYPES = [0, 1, 2];
-const SPECIAL_ENEMY_TYPES = [3, 4, 5];
+const SPECIAL_ENEMY_TYPES = [3, 4, 5, 6];
 
 class WaveManager extends Behaviour {
   private selectedBaseEnemyTypes: number[];
