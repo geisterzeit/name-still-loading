@@ -1,7 +1,6 @@
 import {
   AssetReference,
   Behaviour,
-  SyncedRoom,
   Text,
   serializable,
   syncField,
@@ -20,8 +19,6 @@ export class Spawner extends Behaviour {
   @serializable(AssetReference)
   enemies: AssetReference[] = [];
 
-  @syncField()
-  private currentWave: number = 0;
   private currentEnemyCount: number = 0;
 
   /**Aktuelle Welle Display */
@@ -32,16 +29,13 @@ export class Spawner extends Behaviour {
   private currentState: String = "beforeWave";
   private waveManager: WaveManager = new WaveManager();
 
-  start(): void {
-    this.currentWave = 0;
-  }
-
   private async spawnWave(): Promise<void> {
     this.currentState = "spawning";
-    const waveObject = this.waveManager.getWave()
+    const waveObject = this.waveManager.getWave();
 
     console.log(
-      `Starte Wave ${this.currentWave + 1}: ${waveObject.enemies.length
+      `Starte Wave ${this.waveManager.waveCount + 1}: ${
+        waveObject.enemies.length
       } Gegner, ${waveObject.interval}s Abstand`
     );
 
@@ -72,14 +66,14 @@ export class Spawner extends Behaviour {
   private gonextWave(): void {
     this.currentState = "betweenWaves";
 
-    Gold.addGold(50 * (this.currentWave + 1))
+    Gold.addGold(50 * (this.waveManager.waveCount + 1));
 
-    this.waveManager.incrementWave()
+    this.waveManager.incrementWave();
     this.currentEnemyCount = 0;
   }
 
   update(): void {
-    this.currentWaveDisplay.text = `Welle: ${this.currentWave + 1}`;
+    this.currentWaveDisplay.text = `Welle: ${this.waveManager.waveCount + 1}`;
     if (EnemyManager.enemies.length == 0 && this.currentState == "enemiesAlive")
       this.gonextWave();
   }

@@ -29,16 +29,18 @@ function getDamageMultiplier(towerType: ElementType, monsterType: ElementType) {
   return 0.5;
 }
 
-function getExperienceMultiplier(towerId: string): number {
-  return 1 + (0.01 * Database.instance.getTowerKillCount(towerId))
+function getExperienceMultiplier(towerId: number): number {
+  return 1 + 0.01 * Database.instance.getTowerKillCount(towerId);
 }
 
 export function calculateDamage(
   baseDamage: number,
   towerType: ElementType,
-  monsterType: ElementType,
-  towerId: string
+  monsterType: ElementType
 ) {
-  console.log(towerId)
-  return baseDamage * getDamageMultiplier(towerType, monsterType) * getExperienceMultiplier(towerId);
+  return (
+    baseDamage *
+    getDamageMultiplier(towerType, monsterType) *
+    getExperienceMultiplier(towerType)
+  );
 }

@@ -70,12 +70,7 @@ export class Tower extends Behaviour {
       const enemy = target.getComponent(Enemy);
       if (enemy) {
         // TODO: Put actual Tower id
-        const damage = calculateDamage(
-          this.damage,
-          this.type,
-          enemy.type,
-          this.gameObject.name
-        );
+        const damage = calculateDamage(this.damage, this.type, enemy.type);
         console.log(this.type, enemy.type, distance, damage);
         enemy.takeDamage(damage);
       }

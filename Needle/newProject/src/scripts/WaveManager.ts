@@ -1,12 +1,17 @@
-const BASE_ENEMY_TYPES = [3];
+import { Behaviour, syncField } from "@needle-tools/engine";
+
+const BASE_ENEMY_TYPES = [0, 1, 2];
 const SPECIAL_ENEMY_TYPES = [3, 4, 5];
 
-class WaveManager {
-  private waveCount = 0;
+class WaveManager extends Behaviour {
   private selectedBaseEnemyTypes: number[];
   private selectedSpecialEnemyTypes: number[];
 
+  @syncField()
+  waveCount = 0;
+
   constructor() {
+    super();
     this.selectedBaseEnemyTypes = [
       this.pickRandomBaseEnemyType(),
       this.pickRandomBaseEnemyType(),

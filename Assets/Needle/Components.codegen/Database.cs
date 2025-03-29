@@ -9,8 +9,8 @@ namespace Needle.Typescript.GeneratedComponents
 	{
 		public void start(){}
 		public void getUserTowerStats(){}
-		public void getTowerKillCount(string @towerId){}
-		public void updateTowerKills(string @towerId, float @additionalKills){}
+		public void getTowerKillCount(float @towerId){}
+		public void updateTowerKills(float @towerId, float @additionalKills){}
 	}
 }
 
