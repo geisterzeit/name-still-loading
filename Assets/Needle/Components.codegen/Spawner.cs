@@ -9,7 +9,6 @@ namespace Needle.Typescript.GeneratedComponents
 	{
 		public UnityEngine.Transform[] @enemies = new UnityEngine.Transform[]{ };
 		public UnityEngine.UI.Text @currentWaveDisplay;
-		public void start(){}
 		public void initiateWave(){}
 		public void update(){}
 	}
