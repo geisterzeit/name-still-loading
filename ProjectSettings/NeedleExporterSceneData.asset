@@ -21,7 +21,8 @@ MonoBehaviour:
     Projects: []
     BuilderScene: 
   - Path: Assets/scene/NikosARTestumgebung.unity
-    Projects: []
+    Projects:
+    - ProjectPath: Needle/newProject
     BuilderScene: 
   - Path: Assets/TestScene.unity
     Projects:
@@ -36,27 +37,7 @@ MonoBehaviour:
     - ProjectPath: Needle/newProject
     BuilderScene: 
   - Path: Assets/Samples/Needle Engine/Configurator (Everywhere Actions).unity
-    Projects:
-    - ProjectPath: Library/Needle/Sample
-    BuilderScene: 
-  - Path: Assets/scene/MainMenu.unity
-    Projects:
-    - ProjectPath: Needle/newProject
-    BuilderScene: 
-  - Path: Assets/Samples/Needle Engine/Scene 3 - Lightmap.unity
-    Projects: []
-    BuilderScene: 
-  - Path: Assets/Samples/Needle Engine/Multi Scenes.unity
-    Projects:
-    - ProjectPath: Library/Needle/Sample
-    BuilderScene: 
-  - Path: Assets/scene/Loader.unity
-    Projects:
-    - ProjectPath: Needle/newProject
-    BuilderScene: 
-  - Path: Assets/scene/LoadingScene.unity
     Projects: []
     BuilderScene: 
   Projects:
   - ProjectPath: Needle/newProject
-  - ProjectPath: Library/Needle/Sample

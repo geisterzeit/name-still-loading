@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f7209979c7af21692b2906c81cd998b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whatToFollow: {fileID: 0}
+  whatToFollow: {fileID: 1068209868842902132}
 --- !u!1 &2349065728501190598
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,7 +705,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3119554286366470747}
         m_TargetAssemblyTypeName: Needle.Typescript.GeneratedComponents.LockTowerIn,
           Assembly-CSharp
         m_MethodName: lockIn
