@@ -372,7 +372,7 @@ MonoBehaviour:
   createMenuButtons: 0
   scenes:
   - asset: {fileID: 102900000, guid: 89bfe5a789710ae49af87c0cc09875de, type: 3}
-  - asset: {fileID: 102900000, guid: aa3b9b4fb6532d744a9c7bbe9fb632e5, type: 3}
+  - asset: {fileID: 102900000, guid: bbbe32b57036ace42816ddc75ea724e0, type: 3}
   loadingScene:
     asset: {fileID: 102900000, guid: f2bdfa4f886cc404c9fc8925f2107c97, type: 3}
   queryParameterName: scene
@@ -524,67 +524,6 @@ MonoBehaviour:
   LODsMaxSize: 128
   MeshCompression: 1
   GenerateMeshLODs: 1
---- !u!1 &1139748651
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1139748652}
-  - component: {fileID: 1139748653}
-  - component: {fileID: 1139748654}
-  m_Layer: 0
-  m_Name: tmp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1139748652
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1139748651}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1139748653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1139748651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c08239694766173f43218ea4ff0aa4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainScreen: {fileID: 0}
-  statsScreen: {fileID: 0}
-  highscoreScreen: {fileID: 0}
---- !u!114 &1139748654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1139748651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5501e58dfd7992dae30f092b68ab1a1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defeatDisplay: {fileID: 0}
 --- !u!1 &1609064305
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,56 +634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1734724395
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1734724396}
-  - component: {fileID: 1734724397}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1734724396
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1734724395}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1734724397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1734724395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6d2c67ae7e4416a98aa03d96398832b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _position: 1
-  ShowNeedleLogo: 1
-  CreateFullscreenButton: 1
-  CreateMuteButton: 1
-  CreateQRCodeButton: 1
-  ShowSpatialMenu: 1
 --- !u!1 &1786657968
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,5 +691,3 @@ SceneRoots:
   - {fileID: 706762906}
   - {fileID: 1609064307}
   - {fileID: 733754038}
-  - {fileID: 1139748652}
-  - {fileID: 1734724396}

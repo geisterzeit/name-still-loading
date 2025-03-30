@@ -1,6 +1,7 @@
 import { Behaviour, GameObject, serializable, TransformData } from "@needle-tools/engine";
 import { Quaternion, Vector3 } from "three";
 import { Wegpunkte } from "../Wegpunkte";
+import { Life } from "../Life";
 
 export class EnemyMovement extends Behaviour {
   @serializable()
@@ -39,6 +40,7 @@ export class EnemyMovement extends Behaviour {
 
   private getNextWaypoint(): void {
     if (this.wavePointIndex >= Wegpunkte.points.length - 1) {
+      Life.loseLife(1);
       this.gameObject.destroy();
       return;
     }

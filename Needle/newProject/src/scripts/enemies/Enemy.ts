@@ -40,7 +40,6 @@ export class Enemy extends Behaviour {
   }
 
   onDestroy(): void {
-    Life.loseLife(1);
     EnemyManager.unregisterEnemy(this.gameObject);
   }
 
