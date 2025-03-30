@@ -8,6 +8,7 @@ import { EnemyManager } from "./EnemyManager";
 import { Gold } from "../Gold";
 import { ElementType } from "../element-system/ElementType";
 import { Vector3 } from "three";
+import { Life } from "../Life";
 
 export class Enemy extends Behaviour {
   @serializable()
@@ -39,6 +40,7 @@ export class Enemy extends Behaviour {
   }
 
   onDestroy(): void {
+    Life.loseLife(1);
     EnemyManager.unregisterEnemy(this.gameObject);
   }
 
