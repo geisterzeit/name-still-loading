@@ -1,4 +1,4 @@
-import { Behaviour, GameObject, serializable } from "@needle-tools/engine";
+import { Behaviour, GameObject, serializable, TransformData } from "@needle-tools/engine";
 import { Quaternion, Vector3 } from "three";
 import { Wegpunkte } from "../Wegpunkte";
 

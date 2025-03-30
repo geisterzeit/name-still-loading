@@ -4,6 +4,7 @@ import { EnemyManager } from "./enemies/EnemyManager";
 import { Enemy } from "./enemies/Enemy";
 import { calculateDamage } from "./element-system/DamageUtils";
 import { ElementType } from "./element-system/ElementType";
+import { Targeting } from "./Targeting";
 
 export class Tower extends Behaviour {
   @serializable()
@@ -28,12 +29,22 @@ export class Tower extends Behaviour {
       this.fireCooldown -= this.context.time.deltaTime;
     }
 
-    if (this.enemiesInRange.length > 0 && this.fireCooldown <= 0) {
-      this.shoot(this.enemiesInRange[0]);
+    this.detectEnemiesInRange();
+
+    if (!this.enemiesInRange || !(this.enemiesInRange.length > 0)) {
+      return
+    }
+
+    let firstEnemy = this.enemiesInRange[0]
+
+    if (this.fireCooldown <= 0) {
+      this.shoot(firstEnemy);
       this.fireCooldown = 1 / this.fireRatePerSecond;
     }
 
-    this.detectEnemiesInRange();
+    if (this.gameObject.getComponentsInChildren(Targeting).length > 0) {
+      this.gameObject.getComponentsInChildren(Targeting)[0].target(firstEnemy)
+    }
   }
 
   detectEnemiesInRange() {

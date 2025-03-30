@@ -34,9 +34,9 @@ export class Enemy extends Behaviour {
     this.maxShield = this.shieldHealth;
     EnemyManager.registerEnemy(this.gameObject);
     this.healthDisplay =
-      this.gameObject.getComponentsInChildren(RectTransform)[2];
+      this.gameObject.getComponentsInChildren(RectTransform).find(obj => obj.name === "HealthBar") ?? null;
     this.shieldDisplay =
-      this.gameObject.getComponentsInChildren(RectTransform)[3];
+      this.gameObject.getComponentsInChildren(RectTransform).find(obj => obj.name === "ShieldBar") ?? null;
   }
 
   onDestroy(): void {
