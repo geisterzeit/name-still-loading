@@ -1,4 +1,9 @@
-import { Behaviour, GameObject, serializable } from "@needle-tools/engine";
+import {
+  Behaviour,
+  DragControls,
+  GameObject,
+  serializable,
+} from "@needle-tools/engine";
 import { Vector3 } from "three";
 import { EnemyManager } from "./enemies/EnemyManager";
 import { Enemy } from "./enemies/Enemy";
@@ -32,10 +37,10 @@ export class Tower extends Behaviour {
     this.detectEnemiesInRange();
 
     if (!this.enemiesInRange || !(this.enemiesInRange.length > 0)) {
-      return
+      return;
     }
 
-    let firstEnemy = this.enemiesInRange[0]
+    let firstEnemy = this.enemiesInRange[0];
 
     if (this.fireCooldown <= 0) {
       this.shoot(firstEnemy);
@@ -43,7 +48,7 @@ export class Tower extends Behaviour {
     }
 
     if (this.gameObject.getComponentsInChildren(Targeting).length > 0) {
-      this.gameObject.getComponentsInChildren(Targeting)[0].target(firstEnemy)
+      this.gameObject.getComponentsInChildren(Targeting)[0].target(firstEnemy);
     }
   }
 
