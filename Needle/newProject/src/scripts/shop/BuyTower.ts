@@ -4,6 +4,7 @@ import {
   DragControls,
   IPointerClickHandler,
   LogType,
+  ParticleSystem,
   PointerEventData,
   serializable,
   showBalloonMessage,
@@ -17,6 +18,8 @@ export class BuyTower extends Behaviour implements IPointerClickHandler {
   tower: AssetReference | null = null;
   @serializable()
   towerCost: number = 50;
+  @serializable(ParticleSystem)
+  spawnFog: ParticleSystem | null = null;
 
   private spawnedTower: Object3D | null = null;
 
@@ -24,6 +27,10 @@ export class BuyTower extends Behaviour implements IPointerClickHandler {
   onPointerClick(_args: PointerEventData) {
     if (Gold.getGold() >= this.towerCost) {
       console.log(this.gameObject.position);
+      if(this.spawnFog)
+      {
+        this.spawnFog.play();
+      }
       this.tower
         ?.instantiateSynced({
           parent: this.gameObject.parent?.parent!,

@@ -1,12 +1,11 @@
-import { Behaviour } from "@needle-tools/engine";
+import { Behaviour, serializable } from "@needle-tools/engine";
 
 export class RotateMe extends Behaviour{
     
-    start(): void {
-        console.log("Hallo I bims 1 drehender Würfel")
-    }
-    
+    @serializable()
+    speed: number = 1;
+
     update(): void {
-        this.gameObject.rotateY(this.context.time.deltaTime);
+        this.gameObject.rotateY(this.context.time.deltaTime*this.speed);
     }
 }

@@ -9,6 +9,7 @@ namespace Needle.Typescript.GeneratedComponents
 	{
 		public UnityEngine.Transform @tower;
 		public float @towerCost = 50f;
+		public UnityEngine.ParticleSystem @spawnFog;
 		public void onPointerClick(UnityEngine.EventSystems.PointerEventData @_args){}
 	}
 }
