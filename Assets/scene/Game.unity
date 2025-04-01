@@ -3187,6 +3187,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setingsScreen: {fileID: 1791409962}
   ingameScreen: {fileID: 1095049925}
+--- !u!1 &1127062543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1127062545}
+  - component: {fileID: 1127062544}
+  m_Layer: 0
+  m_Name: ImageTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1127062544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127062543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d7e0f7729841bb9eb0e94b42437189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackedImages:
+  - Image:
+      Mode: 0
+      File: {fileID: 2800000, guid: 5dd55d5137daf2b47a0f8a6e66f75545, type: 3}
+      String: 
+    WidthInMeters: 0.15
+    Object:
+      asset: {fileID: 2074702033}
+    CreateObjectInstance: 0
+    ImageDoesNotMove: 0
+    HideWhenTrackingIsLost: 0
+--- !u!4 &1127062545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127062543}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1170296320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6661,6 +6716,8 @@ MonoBehaviour:
   AutoExport: 1
   AutoCompress: 1
   Dependencies: []
+  CloudName: Game
+  CloudTeam: 
 --- !u!4 &1868336779
 Transform:
   m_ObjectHideFlags: 0
@@ -14428,3 +14485,4 @@ SceneRoots:
   - {fileID: 866433700}
   - {fileID: 2074702034}
   - {fileID: 1210550502}
+  - {fileID: 1127062545}
