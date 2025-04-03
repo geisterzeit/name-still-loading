@@ -16,6 +16,7 @@ namespace Needle.Typescript.GeneratedComponents
 		public void detectEnemiesInRange(){}
 		public void shoot(UnityEngine.GameObject @target){}
 		public void lockIn(){}
+		public void destroyScripts(){}
 		public void getRange(){}
 	}
 }

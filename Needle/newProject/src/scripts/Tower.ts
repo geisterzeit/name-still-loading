@@ -3,6 +3,7 @@ import {
   DragControls,
   GameObject,
   serializable,
+  syncField,
 } from "@needle-tools/engine";
 import { Vector3 } from "three";
 import { EnemyManager } from "./enemies/EnemyManager";
@@ -14,7 +15,11 @@ import { Database } from "./Database";
 
 export class Tower extends Behaviour {
   @serializable()
+  @syncField()
   active: boolean = true;
+
+  private hasBeenLockedIn: boolean = false;
+
   @serializable()
   range: number = 2;
   @serializable()
@@ -30,6 +35,11 @@ export class Tower extends Behaviour {
 
   update(): void {
     if (this.active) {
+      if (!this.hasBeenLockedIn) {
+        this.destroyScripts();
+        this.hasBeenLockedIn = true;
+      }
+
       if (this.fireCooldown > 0) {
         this.fireCooldown -= this.context.time.deltaTime;
       }
@@ -92,7 +102,7 @@ export class Tower extends Behaviour {
 
         let enemyDied = enemy.takeDamage(damage);
         if (enemyDied) {
-          Database.instance.updateTowerKills(this.type, 1)
+          Database.instance.updateTowerKills(this.type, 1);
         }
       }
       return;
@@ -100,10 +110,13 @@ export class Tower extends Behaviour {
   }
 
   lockIn(): void {
+    this.active = true;
+  }
+
+  destroyScripts(): void {
     this.gameObject.getObjectByName("Radius")?.destroy();
     this.gameObject.getObjectByName("Canvas")?.destroy();
     this.gameObject.getComponentInChildren(DragControls)?.destroy();
-    this.active = true;
   }
 
   private isEnemyImmune(enemy: Enemy): boolean {
