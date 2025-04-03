@@ -713,8 +713,8 @@ MonoBehaviour:
   AutoExport: 1
   AutoCompress: 1
   Dependencies: []
-  CloudName: Loader
-  CloudTeam: org_ab4231dgrkhj
+  CloudName: Game
+  CloudTeam: org_fwhpxsp4c4m0
 --- !u!4 &346511515
 Transform:
   m_ObjectHideFlags: 0
@@ -888,6 +888,7 @@ MonoBehaviour:
   tower: {fileID: 99061616163484336, guid: 95027f3dbeca32e4a85e7dbc1bb9af11, type: 3}
   towerCost: 50
   spawnFog: {fileID: 4447283014543908196}
+  radius: {fileID: 0}
 --- !u!1 &439026881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,6 +1402,7 @@ MonoBehaviour:
   tower: {fileID: 99061616163484336, guid: 9b7be74113856d942bb3d4923ab763b9, type: 3}
   towerCost: 75
   spawnFog: {fileID: 4447283014543908196}
+  radius: {fileID: 0}
 --- !u!136 &576744798
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3177,9 +3179,9 @@ MonoBehaviour:
   TrackedImages:
   - Image:
       Mode: 0
-      File: {fileID: 2800000, guid: 5dd55d5137daf2b47a0f8a6e66f75545, type: 3}
+      File: {fileID: 2800000, guid: f7fb0f8437da540479c9e3d9727bdec5, type: 3}
       String: 
-    WidthInMeters: 0.15
+    WidthInMeters: 0.2
     Object:
       asset: {fileID: 2074702033}
     CreateObjectInstance: 0
@@ -3427,7 +3429,7 @@ MonoBehaviour:
   usePlacementReticle: 1
   customARPlacementReticle: {fileID: 0}
   usePlacementAdjustment: 0
-  arScale: 1
+  arScale: 4
   autoPlace: 1
   autoCenter: 1
   useXRAnchor: 0
@@ -4412,6 +4414,7 @@ MonoBehaviour:
   tower: {fileID: 99061616163484336, guid: bfe81b05cf3fba043a86fbaf960d7ba1, type: 3}
   towerCost: 75
   spawnFog: {fileID: 4447283014543908196}
+  radius: {fileID: 0}
 --- !u!136 &1394799071
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4948,6 +4951,7 @@ MonoBehaviour:
   tower: {fileID: 99061616163484336, guid: 97fef5d03c440c1419e31fbba21504dd, type: 3}
   towerCost: 50
   spawnFog: {fileID: 4447283014543908196}
+  radius: {fileID: 0}
 --- !u!136 &1620114266
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5519,6 +5523,7 @@ MonoBehaviour:
   tower: {fileID: 99061616163484336, guid: 1bb3d2c904e4e304586e46dedb922af9, type: 3}
   towerCost: 50
   spawnFog: {fileID: 4447283014543908196}
+  radius: {fileID: 0}
 --- !u!136 &1733635166
 CapsuleCollider:
   m_ObjectHideFlags: 0
