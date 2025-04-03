@@ -19,7 +19,7 @@ export class Database extends Behaviour {
     this.loadUserData();
   }
 
-  private async loadUserData() {
+  async loadUserData() {
     try {
       const response = await Database.getValue(this.username);
       if (response.ok) {

@@ -9,6 +9,7 @@ namespace Needle.Typescript.GeneratedComponents
 	{
 		public string @username = "Default";
 		public void start(){}
+		public void loadUserData(){}
 		public void getUserTowerStats(){}
 		public void getTowerKillCount(float @towerId){}
 		public void updateTowerKills(float @towerId, float @additionalKills){}
