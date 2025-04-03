@@ -100,12 +100,12 @@ export class Tower extends Behaviour {
         enemy.type === ElementType.INVISIBLE) ||
       (this.type === ElementType.INVISIBLE &&
         enemy.type !== ElementType.INVISIBLE) ||
-      (this.type !== ElementType.CANNON && enemy.shieldHealth > 0)
+      (this.type !== ElementType.CANNON && enemy.shieldHealth > 0) ||
+      (this.type === ElementType.CANNON && enemy.shieldHealth <= 0)
     );
   }
 
-  public getRange(): number
-  {
-    return this.range*2;
+  public getRange(): number {
+    return this.range * 2;
   }
 }
