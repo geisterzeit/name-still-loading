@@ -29,8 +29,7 @@ export class BuyTower extends Behaviour implements IPointerClickHandler {
   onPointerClick(_args: PointerEventData) {
     if (Gold.getGold() >= this.towerCost) {
       //console.log(this.gameObject.position);
-      if(this.spawnFog)
-      {
+      if (this.spawnFog) {
         this.spawnFog.play();
       }
       this.tower
@@ -42,15 +41,22 @@ export class BuyTower extends Behaviour implements IPointerClickHandler {
             this.gameObject.position.z
           ),
         })
-        .then(
-          (newTower) => (
-            newTower?.getObjectByName("Radius")?.scale.set(newTower?.getComponent(Tower)?.getRange()!,0.000001,newTower?.getComponent(Tower)?.getRange()!),
-            newTower?.getComponent(Tower)?.destroy(),
-            (this.spawnedTower = newTower)
-          )
-        );
+        .then((newTower) => {
+          const towerComponent = newTower?.getComponent(Tower);
+          if (towerComponent) {
+            towerComponent.active = false;
+          }
+
+          newTower
+            ?.getObjectByName("Radius")
+            ?.scale.set(
+              towerComponent?.getRange()!,
+              0.000001,
+              towerComponent?.getRange()!
+            );
+          this.spawnedTower = newTower;
+        });
       Gold.addGold(this.towerCost * -1);
-      
     } else {
       showBalloonMessage(
         "You don't have enought Gold!\n" +

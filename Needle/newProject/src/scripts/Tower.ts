@@ -13,6 +13,9 @@ import { Targeting } from "./Targeting";
 
 export class Tower extends Behaviour {
   @serializable()
+  active: boolean = true;
+
+  @serializable()
   range: number = 2;
   @serializable()
   damage: number = 50;
@@ -25,30 +28,30 @@ export class Tower extends Behaviour {
   private fireCooldown: number = 0;
   private enemiesInRange: GameObject[] = [];
 
-  start(): void {
-    //console.log("Tower startet!");
-  }
-
   update(): void {
-    if (this.fireCooldown > 0) {
-      this.fireCooldown -= this.context.time.deltaTime;
-    }
+    if (this.active) {
+      if (this.fireCooldown > 0) {
+        this.fireCooldown -= this.context.time.deltaTime;
+      }
 
-    this.detectEnemiesInRange();
+      this.detectEnemiesInRange();
 
-    if (!this.enemiesInRange || !(this.enemiesInRange.length > 0)) {
-      return;
-    }
+      if (!this.enemiesInRange || !(this.enemiesInRange.length > 0)) {
+        return;
+      }
 
-    let firstEnemy = this.enemiesInRange[0];
+      let firstEnemy = this.enemiesInRange[0];
 
-    if (this.fireCooldown <= 0) {
-      this.shoot(firstEnemy);
-      this.fireCooldown = 1 / this.fireRatePerSecond;
-    }
+      if (this.fireCooldown <= 0) {
+        this.shoot(firstEnemy);
+        this.fireCooldown = 1 / this.fireRatePerSecond;
+      }
 
-    if (this.gameObject.getComponentsInChildren(Targeting).length > 0) {
-      this.gameObject.getComponentsInChildren(Targeting)[0].target(firstEnemy);
+      if (this.gameObject.getComponentsInChildren(Targeting).length > 0) {
+        this.gameObject
+          .getComponentsInChildren(Targeting)[0]
+          .target(firstEnemy);
+      }
     }
   }
 
@@ -92,6 +95,13 @@ export class Tower extends Behaviour {
       }
       return;
     }
+  }
+
+  lockIn(): void {
+    this.gameObject.getObjectByName("Radius")?.destroy();
+    this.gameObject.getObjectByName("Canvas")?.destroy();
+    this.gameObject.getComponentInChildren(DragControls)?.destroy();
+    this.active = true;
   }
 
   private isEnemyImmune(enemy: Enemy): boolean {

@@ -287,9 +287,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3119554286366470747}
-        m_TargetAssemblyTypeName: Needle.Typescript.GeneratedComponents.LockTowerIn,
-          Assembly-CSharp
+      - m_Target: {fileID: 6903192381125750906}
+        m_TargetAssemblyTypeName: Needle.Typescript.GeneratedComponents.Tower, Assembly-CSharp
         m_MethodName: lockIn
         m_Mode: 1
         m_Arguments:
@@ -406,7 +405,6 @@ GameObject:
   m_Component:
   - component: {fileID: 99061616163484336}
   - component: {fileID: 6903192381125750906}
-  - component: {fileID: 3119554286366470747}
   - component: {fileID: 705205119645108954}
   m_Layer: 0
   m_Name: CannonTower
@@ -447,22 +445,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a8a04cfcd7fef3952c4332d58988e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 1
   range: 2
   damage: 50
   fireRatePerSecond: 1
   type: 4
---- !u!114 &3119554286366470747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4370839931890067747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 395cb628cb53898598ed88dc5309aa51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &705205119645108954
 MonoBehaviour:
   m_ObjectHideFlags: 0

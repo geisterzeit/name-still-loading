@@ -7,6 +7,7 @@ namespace Needle.Typescript.GeneratedComponents
 {
 	public partial class Tower : UnityEngine.MonoBehaviour
 	{
+		public bool @active = true;
 		public float @range = 2f;
 		public float @damage = 50f;
 		public float @fireRatePerSecond = 1f;
@@ -15,6 +16,7 @@ namespace Needle.Typescript.GeneratedComponents
 		public void update(){}
 		public void detectEnemiesInRange(){}
 		public void shoot(UnityEngine.GameObject @target){}
+		public void lockIn(){}
 		public void getRange(){}
 	}
 }
