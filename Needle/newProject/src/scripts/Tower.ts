@@ -10,11 +10,11 @@ import { Enemy } from "./enemies/Enemy";
 import { calculateDamage } from "./element-system/DamageUtils";
 import { ElementType } from "./element-system/ElementType";
 import { Targeting } from "./Targeting";
+import { Database } from "./Database";
 
 export class Tower extends Behaviour {
   @serializable()
   active: boolean = true;
-
   @serializable()
   range: number = 2;
   @serializable()
@@ -88,10 +88,12 @@ export class Tower extends Behaviour {
     if (distance < this.range) {
       const enemy = target.getComponent(Enemy);
       if (enemy) {
-        // TODO: Put actual Tower id
         const damage = calculateDamage(this.damage, this.type, enemy.type);
-        //console.log(this.type, enemy.type, distance, damage);
-        enemy.takeDamage(damage);
+
+        let enemyDied = enemy.takeDamage(damage);
+        if (enemyDied) {
+          Database.instance.updateTowerKills(this.type, 1)
+        }
       }
       return;
     }

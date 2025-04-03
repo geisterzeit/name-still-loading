@@ -10,14 +10,12 @@ interface TowerStats {
 }
 
 export class Database extends Behaviour {
-  private username: string = "";
+  username: string = "Default";
   private towerStats: TowerStats = {};
 
   static instance: Database = new Database();
 
   start(): void {
-    // TODO: Get actual name
-    this.username = "defaultName";
     this.loadUserData();
   }
 
@@ -45,22 +43,18 @@ export class Database extends Behaviour {
     return this.towerStats[towerId] || 0;
   }
 
-  async updateTowerKills(
+  updateTowerKills(
     towerId: number,
     additionalKills: number
-  ): Promise<number> {
+  ): void {
     if (!this.towerStats[towerId]) {
       this.towerStats[towerId] = 0;
     }
 
     this.towerStats[towerId] += additionalKills;
-
-    await this.saveUserData();
-
-    return this.towerStats[towerId];
   }
 
-  private async saveUserData() {
+  async saveUserData() {
     try {
       if (this.username) {
         await Database.setValue(this.username, this.towerStats);

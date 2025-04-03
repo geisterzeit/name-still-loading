@@ -9,6 +9,7 @@ import { Wegpunkte } from "./Wegpunkte";
 import { Gold } from "./Gold";
 import { EnemyManager } from "./enemies/EnemyManager";
 import WaveManager from "./WaveManager";
+import { Database } from "./Database";
 
 async function waitForSeconds(seconds: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000)); // Sekunden in Millisekunden umwandeln
@@ -34,8 +35,7 @@ export class Spawner extends Behaviour {
     const waveObject = this.waveManager.getWave();
 
     console.log(
-      `Starte Wave ${this.waveManager.waveCount + 1}: ${
-        waveObject.enemies.length
+      `Starte Wave ${this.waveManager.waveCount + 1}: ${waveObject.enemies.length
       } Gegner, ${waveObject.interval}s Abstand`
     );
 
@@ -67,9 +67,10 @@ export class Spawner extends Behaviour {
     this.currentState = "betweenWaves";
 
     Gold.addGold(50 * (this.waveManager.waveCount + 1));
-
     this.waveManager.incrementWave();
     this.currentEnemyCount = 0;
+
+    Database.instance.saveUserData()
   }
 
   update(): void {

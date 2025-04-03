@@ -42,7 +42,7 @@ export class Enemy extends Behaviour {
     EnemyManager.unregisterEnemy(this.gameObject);
   }
 
-  takeDamage(damage: number): void {
+  takeDamage(damage: number): boolean {
     console.log("Damage", damage);
     let oldHealth = this.health;
     let oldShield = this.shieldHealth;
@@ -73,11 +73,13 @@ export class Enemy extends Behaviour {
 
     if (this.health <= 0) {
       this.die();
+      return true;
     }
+    return false;
   }
 
   private die(): void {
     this.gameObject.destroy();
-    Gold.addGold(this.deathGold/4);
+    Gold.addGold(this.deathGold / 4);
   }
 }
