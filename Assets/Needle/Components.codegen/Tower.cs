@@ -15,6 +15,7 @@ namespace Needle.Typescript.GeneratedComponents
 		public void update(){}
 		public void detectEnemiesInRange(){}
 		public void shoot(UnityEngine.GameObject @target){}
+		public void getRange(){}
 	}
 }
 

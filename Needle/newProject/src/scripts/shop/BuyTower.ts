@@ -20,13 +20,15 @@ export class BuyTower extends Behaviour implements IPointerClickHandler {
   towerCost: number = 50;
   @serializable(ParticleSystem)
   spawnFog: ParticleSystem | null = null;
+  @serializable(AssetReference)
+  radius: AssetReference | null = null;
 
   private spawnedTower: Object3D | null = null;
 
   // Make sure to have an ObjectRaycaster component in the parent hierarchy
   onPointerClick(_args: PointerEventData) {
     if (Gold.getGold() >= this.towerCost) {
-      console.log(this.gameObject.position);
+      //console.log(this.gameObject.position);
       if(this.spawnFog)
       {
         this.spawnFog.play();
@@ -42,14 +44,13 @@ export class BuyTower extends Behaviour implements IPointerClickHandler {
         })
         .then(
           (newTower) => (
-            // (newTower!.parent = this.gameObject.parent),
-            // newTower?.position.add(new Vector3(0,1,0).add(this.gameObject.position)),
-            // newTower?.getObjectByName("Tower")?.addComponent(DragControls),
+            newTower?.getObjectByName("Radius")?.scale.set(newTower?.getComponent(Tower)?.getRange()!,0.000001,newTower?.getComponent(Tower)?.getRange()!),
             newTower?.getComponent(Tower)?.destroy(),
             (this.spawnedTower = newTower)
           )
         );
       Gold.addGold(this.towerCost * -1);
+      
     } else {
       showBalloonMessage(
         "You don't have enought Gold!\n" +
@@ -59,14 +60,4 @@ export class BuyTower extends Behaviour implements IPointerClickHandler {
       );
     }
   }
-
-  /*public lockIn(): void
-    {
-        if(this.spawnedTower)
-        {
-            this.spawnedTower.addComponent(Tower);
-            this.spawnedTower.getObjectByName("Radius")?.destroy();
-            this.spawnedTower.getComponent(DragControls)?.destroy();
-        }
-    }*/
 }

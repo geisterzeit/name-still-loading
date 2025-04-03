@@ -87,7 +87,7 @@ export class Tower extends Behaviour {
       if (enemy) {
         // TODO: Put actual Tower id
         const damage = calculateDamage(this.damage, this.type, enemy.type);
-        console.log(this.type, enemy.type, distance, damage);
+        //console.log(this.type, enemy.type, distance, damage);
         enemy.takeDamage(damage);
       }
       return;
@@ -102,5 +102,10 @@ export class Tower extends Behaviour {
         enemy.type !== ElementType.INVISIBLE) ||
       (this.type !== ElementType.CANNON && enemy.shieldHealth > 0)
     );
+  }
+
+  public getRange(): number
+  {
+    return this.range*2;
   }
 }

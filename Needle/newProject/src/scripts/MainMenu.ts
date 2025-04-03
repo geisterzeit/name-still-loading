@@ -1,4 +1,4 @@
-import { Behaviour, GameObject, getComponentInChildren, InputField, LogType, SceneSwitcher, serializable, showBalloonMessage } from "@needle-tools/engine";
+import { Behaviour, GameObject, getComponentInChildren, InputField, LogType, SceneSwitcher, serializable, showBalloonMessage, SyncedRoom } from "@needle-tools/engine";
 
 export class MainMenu extends Behaviour
 {
@@ -10,6 +10,7 @@ export class MainMenu extends Behaviour
     highscoreScreen: GameObject | null = null;
 
     private switcher?: SceneSwitcher;
+    private syncedRoom?: SyncedRoom;
     
     async awake()
     {
@@ -34,9 +35,16 @@ export class MainMenu extends Behaviour
         let playerName = getComponentInChildren(this.gameObject, InputField);
         if(playerName && playerName.text.length > 0)
         {
-            console.log(playerName);
+            //console.log(playerName);
             showBalloonMessage("Nice name!", LogType.Warn);
             //TODO Name in DB?
+
+            
+            console.log(this.syncedRoom);
+            this.syncedRoom ??= this.getRoom();
+            this.syncedRoom.tryJoinRandomRoom();
+            console.log(this.syncedRoom);
+
             this.switcher ??= this.get();
             this.switcher?.selectNext();
         }
@@ -48,7 +56,9 @@ export class MainMenu extends Behaviour
 
     public exitGame(): void
     {
-        window.close();
+        this.syncedRoom ??= this.getRoom();
+        console.log(this.syncedRoom);
+        //window.close();
     }
 
     public displayStats(): void
@@ -86,11 +96,15 @@ export class MainMenu extends Behaviour
         this.context.time.timeScale = 1;
         this.switcher ??= this.get();
         this.switcher?.selectNext();
-        //TODO neuen Raum??
     }
 
     private get(): SceneSwitcher
     {
         return GameObject.findObjectOfType(SceneSwitcher)!;
+    }
+
+    private getRoom(): SyncedRoom
+    {
+        return GameObject.findObjectOfType(SyncedRoom)!;
     }
 }

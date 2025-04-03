@@ -1,4 +1,4 @@
-import { Behaviour, GameObject, SceneSwitcher, serializable, showBalloonMessage, syncField, Text } from "@needle-tools/engine"
+import { Behaviour, GameObject, SceneSwitcher, serializable, showBalloonMessage, SyncedRoom, syncField, Text } from "@needle-tools/engine"
 
 export class Life extends Behaviour
 {
