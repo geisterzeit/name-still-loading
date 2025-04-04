@@ -403,8 +403,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   range: 2
-  damage: 50
-  fireRatePerSecond: 1
+  damage: 12.5
+  fireRatePerSecond: 3
   type: 1
 --- !u!114 &8847843972791037046
 MonoBehaviour:

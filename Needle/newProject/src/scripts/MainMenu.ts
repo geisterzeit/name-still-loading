@@ -32,9 +32,7 @@ export class MainMenu extends Behaviour {
             showBalloonMessage("Nice name!", LogType.Warn);
             Database.instance.username = playerName.text
 
-            console.log(this.syncedRoom);
             this.syncedRoom ??= this.getRoom();
-            this.syncedRoom.tryJoinRandomRoom();
             console.log(this.syncedRoom);
 
             this.switcher ??= this.get();
@@ -79,6 +77,9 @@ export class MainMenu extends Behaviour {
         this.context.time.timeScale = 1;
         this.switcher ??= this.get();
         this.switcher?.selectNext();
+        
+        this.syncedRoom ??= this.getRoom();
+        this.syncedRoom.tryJoinRandomRoom();
     }
 
     private get(): SceneSwitcher {

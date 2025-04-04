@@ -8,6 +8,7 @@ import { EnemyManager } from "./EnemyManager";
 import { Gold } from "../Gold";
 import { ElementType } from "../element-system/ElementType";
 import { Vector3 } from "three";
+import WaveManager from "../WaveManager";
 
 export class Enemy extends Behaviour {
   @serializable()
@@ -29,6 +30,7 @@ export class Enemy extends Behaviour {
   deathGold: number = 10;
 
   start(): void {
+    this.health = this.health + (this.health * WaveManager.getWaveCount() * 0.75);
     this.maxHealth = this.health;
     this.maxShield = this.shieldHealth;
     EnemyManager.registerEnemy(this.gameObject);
@@ -43,7 +45,7 @@ export class Enemy extends Behaviour {
   }
 
   takeDamage(damage: number): boolean {
-    console.log("Damage", damage);
+    //console.log("Damage", damage);
     let oldHealth = this.health;
     let oldShield = this.shieldHealth;
     if (this.shieldHealth > 0) {

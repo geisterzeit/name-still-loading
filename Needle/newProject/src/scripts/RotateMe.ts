@@ -1,7 +1,6 @@
 import { Behaviour, serializable } from "@needle-tools/engine";
 
 export class RotateMe extends Behaviour{
-    
     @serializable()
     speed: number = 1;
 

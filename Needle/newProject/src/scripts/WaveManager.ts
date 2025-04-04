@@ -10,6 +10,8 @@ class WaveManager extends Behaviour {
   @syncField()
   waveCount = 0;
 
+  private static waveScaler: number = 0;
+
   constructor() {
     super();
     this.selectedBaseEnemyTypes = [
@@ -35,6 +37,7 @@ class WaveManager extends Behaviour {
 
   incrementWave() {
     this.waveCount++;
+    WaveManager.waveScaler = this.waveCount;
   }
 
   private getRandomElement<T>(array: Array<T>): T {
@@ -97,6 +100,11 @@ class WaveManager extends Behaviour {
     }
 
     return { interval: interval, enemies: this.shuffleArray(enemies) };
+  }
+
+  public static getWaveCount(): number
+  {
+    return WaveManager.waveScaler;
   }
 }
 

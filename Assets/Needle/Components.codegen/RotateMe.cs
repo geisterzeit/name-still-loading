@@ -7,8 +7,8 @@ namespace Needle.Typescript.GeneratedComponents
 {
 	public partial class RotateMe : UnityEngine.MonoBehaviour
 	{
-		public float @towerId = 1f;
-		public void start(){}
+		public float @speed = 1f;
+		public void update(){}
 	}
 }
 
