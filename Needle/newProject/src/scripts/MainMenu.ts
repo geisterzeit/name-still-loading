@@ -45,20 +45,24 @@ export class MainMenu extends Behaviour {
 
     public exitGame(): void {
         this.syncedRoom ??= this.getRoom();
-        console.log(this.syncedRoom);
-        //window.close();
     }
 
     public displayStats(): void {
-        showBalloonMessage("Hier könnten Ihre Stats stehen!", LogType.Warn);
-        if (this.statsScreen && this.mainScreen) {
-            this.mainScreen.activeSelf = false;
-            this.statsScreen.activeSelf = true;
+        let playerName = getComponentInChildren(this.gameObject, InputField);
+
+        if (playerName && playerName.text.length > 0) {
+            if (this.statsScreen && this.mainScreen) {
+                Database.instance.username = playerName.text
+                this.mainScreen.activeSelf = false;
+                this.statsScreen.activeSelf = true;
+            }
+        }
+        else {
+            showBalloonMessage("Please insert your name!", LogType.Warn);
         }
     }
 
     public displayHighscore(): void {
-        showBalloonMessage("Hier könnten die Highscores aufgelistet sein!", LogType.Warn);
         if (this.highscoreScreen && this.mainScreen) {
             this.mainScreen.activeSelf = false;
             this.highscoreScreen.activeSelf = true;
@@ -77,7 +81,7 @@ export class MainMenu extends Behaviour {
         this.context.time.timeScale = 1;
         this.switcher ??= this.get();
         this.switcher?.selectNext();
-        
+
         this.syncedRoom ??= this.getRoom();
         this.syncedRoom.tryJoinRandomRoom();
     }
