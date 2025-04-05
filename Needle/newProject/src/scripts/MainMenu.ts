@@ -1,5 +1,6 @@
-import { Behaviour, GameObject, getComponentInChildren, InputField, LogType, SceneSwitcher, serializable, showBalloonMessage, SyncedRoom } from "@needle-tools/engine";
+import { Behaviour, GameObject, getComponentInChildren, getComponentsInChildren, InputField, LogType, SceneSwitcher, serializable, showBalloonMessage, SyncedRoom } from "@needle-tools/engine";
 import { Database } from "./Database";
+import { KillCounter } from "./KillCounter";
 
 export class MainMenu extends Behaviour {
     @serializable(GameObject)
@@ -53,6 +54,9 @@ export class MainMenu extends Behaviour {
         if (playerName && playerName.text.length > 0) {
             if (this.statsScreen && this.mainScreen) {
                 Database.instance.username = playerName.text
+                getComponentsInChildren(this.statsScreen, KillCounter).forEach((counter) => {
+                    counter.loadData()
+                });
                 this.mainScreen.activeSelf = false;
                 this.statsScreen.activeSelf = true;
             }

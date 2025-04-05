@@ -6,6 +6,10 @@ export class KillCounter extends Behaviour {
     towerId: number = 1;
 
     start(): void {
+        this.loadData()
+    }
+
+    loadData(): void {
         let textDisplay = this.gameObject.getComponent(Text);
         Database.instance.loadUserData().then(() => {
             textDisplay!.text = Database.instance.getTowerKillCount(this.towerId).toString()

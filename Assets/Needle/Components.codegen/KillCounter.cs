@@ -9,6 +9,7 @@ namespace Needle.Typescript.GeneratedComponents
 	{
 		public float @towerId = 1f;
 		public void start(){}
+		public void loadData(){}
 	}
 }
 
