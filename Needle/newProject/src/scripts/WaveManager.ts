@@ -1,4 +1,4 @@
-import { Behaviour, syncField } from "@needle-tools/engine";
+import { Behaviour, syncField, serializable } from "@needle-tools/engine";
 
 const BASE_ENEMY_TYPES = [0, 1, 2];
 const SPECIAL_ENEMY_TYPES = [3, 4, 5, 6];
@@ -7,8 +7,7 @@ class WaveManager extends Behaviour {
   private selectedBaseEnemyTypes: number[];
   private selectedSpecialEnemyTypes: number[];
 
-  @syncField()
-  waveCount = 0;
+  public waveCount: number = 0;
 
   private static waveScaler: number = 0;
 
@@ -100,6 +99,11 @@ class WaveManager extends Behaviour {
     }
 
     return { interval: interval, enemies: this.shuffleArray(enemies) };
+  }
+
+  public setWave(tmp: number): void
+  {
+    this.waveCount = tmp;
   }
 
   public static getWaveCount(): number {

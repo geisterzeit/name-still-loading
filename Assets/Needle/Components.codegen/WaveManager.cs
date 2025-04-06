@@ -7,9 +7,10 @@ namespace Needle.Typescript.GeneratedComponents
 {
 	public partial class WaveManager : UnityEngine.MonoBehaviour
 	{
-		// public undefined @waveCount; → Could not resolve C# type
+		public float @waveCount = 0f;
 		public void incrementWave(){}
 		public void getWave(){}
+		public void setWave(float @tmp){}
 	}
 }
 

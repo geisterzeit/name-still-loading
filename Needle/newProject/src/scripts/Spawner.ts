@@ -32,6 +32,13 @@ export class Spawner extends Behaviour {
   private currentState: String = "beforeWave";
   private waveManager: WaveManager = new WaveManager();
 
+  @syncField()
+  private tmpWaveCount: number = 0;
+
+  start(): void {
+    this.currentState = "beforeWave";
+  }
+
   private async spawnWave(): Promise<void> {
     this.currentState = "spawning";
     const waveObject = this.waveManager.getWave();
@@ -59,7 +66,6 @@ export class Spawner extends Behaviour {
   public initiateWave(): void {
     this.isMine = true
 
-
     console.log(this.currentState);
     if (
       this.currentState == "beforeWave" ||
@@ -76,11 +82,17 @@ export class Spawner extends Behaviour {
     this.waveManager.incrementWave();
     this.currentEnemyCount = 0;
 
+    if(this.isMine)
+    {
+      this.tmpWaveCount = this.waveManager.waveCount;
+    }
+    this.waveManager.setWave(this.tmpWaveCount);
     Database.instance.saveUserData()
   }
 
   update(): void {
     this.currentWaveDisplay.text = `Welle: ${this.waveManager.waveCount + 1}`;
+    this.waveManager.setWave(this.tmpWaveCount);
 
     if (this.isMine) {
       if (EnemyManager.enemies.length == 0 && this.currentState == "enemiesAlive")

@@ -37,6 +37,8 @@ export class Life extends Behaviour
         {
             this.lifeDisplay.text = this.currentLife.toString();
         }
+        if(Life.instance.currentLife <= 0)
+            this.lost();
     }
 
     private lost(): void

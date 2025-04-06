@@ -10,6 +10,7 @@ namespace Needle.Typescript.GeneratedComponents
 		public UnityEngine.Transform[] @enemies = new UnityEngine.Transform[]{ };
 		public UnityEngine.UI.Text @currentWaveDisplay;
 		// public undefined @isMine; → Could not resolve C# type
+		public void start(){}
 		public void initiateWave(){}
 		public void update(){}
 	}

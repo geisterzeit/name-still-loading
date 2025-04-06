@@ -100,8 +100,10 @@ export class Tower extends Behaviour {
 
     if (distance < this.range) {
       const enemy = target.getComponent(Enemy);
-      if (this.isMine) {
-        if (enemy) {
+      if (enemy) {
+        enemy.updateDisplays();
+
+        if (this.isMine) {
           const damage = calculateDamage(this.damage, this.type, enemy.type);
 
           let enemyDied = enemy.takeDamage(damage);
@@ -109,10 +111,6 @@ export class Tower extends Behaviour {
             Database.instance.updateTowerKills(this.type, 1);
           }
         }
-      }
-
-      if (enemy?.health! >= 0) {
-        enemy?.updateDisplays();
       }
     }
   }

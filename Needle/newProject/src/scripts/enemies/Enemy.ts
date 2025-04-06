@@ -3,6 +3,7 @@ import {
   serializable,
   syncField,
   RectTransform,
+  syncDestroy,
 } from "@needle-tools/engine";
 import { EnemyManager } from "./EnemyManager";
 import { Gold } from "../Gold";
@@ -84,7 +85,8 @@ export class Enemy extends Behaviour {
   }
 
   private die(): void {
-    this.gameObject?.destroy();
+    console.log()
+    syncDestroy(this.gameObject, this.context.connection);
     Gold.addGold(this.deathGold / 4);
   }
 }
