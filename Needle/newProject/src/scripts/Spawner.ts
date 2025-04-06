@@ -59,6 +59,8 @@ export class Spawner extends Behaviour {
   public initiateWave(): void {
     this.isMine = true
 
+
+    console.log(this.currentState);
     if (
       this.currentState == "beforeWave" ||
       this.currentState == "betweenWaves"

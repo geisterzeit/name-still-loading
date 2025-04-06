@@ -111,8 +111,8 @@ export class Tower extends Behaviour {
         }
       }
 
-      if (enemy) {
-        enemy.updateDisplays();
+      if (enemy?.health! >= 0) {
+        enemy?.updateDisplays();
       }
     }
   }
