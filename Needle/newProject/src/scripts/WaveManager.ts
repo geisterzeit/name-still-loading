@@ -102,8 +102,7 @@ class WaveManager extends Behaviour {
     return { interval: interval, enemies: this.shuffleArray(enemies) };
   }
 
-  public static getWaveCount(): number
-  {
+  public static getWaveCount(): number {
     return WaveManager.waveScaler;
   }
 }

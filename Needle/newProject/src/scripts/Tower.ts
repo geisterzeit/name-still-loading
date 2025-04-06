@@ -30,6 +30,8 @@ export class Tower extends Behaviour {
   @serializable()
   type: number = ElementType.FIRE;
 
+  isMine: boolean = false;
+
   private fireCooldown: number = 0;
   private enemiesInRange: GameObject[] = [];
 
@@ -95,18 +97,26 @@ export class Tower extends Behaviour {
       .length();
 
     // Destroy enemy if it is too close
+
     if (distance < this.range) {
       const enemy = target.getComponent(Enemy);
-      if (enemy) {
-        const damage = calculateDamage(this.damage, this.type, enemy.type);
+      if (this.isMine) {
+        if (enemy) {
+          const damage = calculateDamage(this.damage, this.type, enemy.type);
 
-        let enemyDied = enemy.takeDamage(damage);
-        if (enemyDied) {
-          Database.instance.updateTowerKills(this.type, 1);
+          let enemyDied = enemy.takeDamage(damage);
+          if (enemyDied) {
+            Database.instance.updateTowerKills(this.type, 1);
+          }
         }
+
       }
-      return;
+
+      if (enemy) {
+        enemy.updateDisplays()
+      }
     }
+
   }
 
   lockIn(): void {

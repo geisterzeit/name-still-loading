@@ -45,7 +45,9 @@ export class BuyTower extends Behaviour implements IPointerClickHandler {
           const towerComponent = newTower?.getComponent(Tower);
           if (towerComponent) {
             towerComponent.active = false;
+            towerComponent.isMine = true
           }
+
 
           newTower
             ?.getObjectByName("Radius")
@@ -60,8 +62,8 @@ export class BuyTower extends Behaviour implements IPointerClickHandler {
     } else {
       showBalloonMessage(
         "You don't have enought Gold!\n" +
-          -1 * (Gold.getGold() - this.towerCost) +
-          " more is needed!",
+        -1 * (Gold.getGold() - this.towerCost) +
+        " more is needed!",
         LogType.Warn
       );
     }

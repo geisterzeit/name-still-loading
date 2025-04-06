@@ -12,6 +12,7 @@ namespace Needle.Typescript.GeneratedComponents
 		public float @damage = 50f;
 		public float @fireRatePerSecond = 1f;
 		public float @type;
+		public bool @isMine = false;
 		public void update(){}
 		public void detectEnemiesInRange(){}
 		public void shoot(UnityEngine.GameObject @target){}

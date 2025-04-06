@@ -14,6 +14,7 @@ namespace Needle.Typescript.GeneratedComponents
 		public void start(){}
 		public void onDestroy(){}
 		public void takeDamage(float @damage){}
+		public void updateDisplays(){}
 	}
 }
 

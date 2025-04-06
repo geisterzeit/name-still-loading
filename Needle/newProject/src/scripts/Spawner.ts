@@ -26,6 +26,8 @@ export class Spawner extends Behaviour {
   @serializable(Text)
   currentWaveDisplay!: Text;
 
+  isMine = false
+
   @syncField()
   private currentState: String = "beforeWave";
   private waveManager: WaveManager = new WaveManager();
@@ -55,6 +57,8 @@ export class Spawner extends Behaviour {
   }
 
   public initiateWave(): void {
+    this.isMine = true
+
     if (
       this.currentState == "beforeWave" ||
       this.currentState == "betweenWaves"
@@ -75,7 +79,10 @@ export class Spawner extends Behaviour {
 
   update(): void {
     this.currentWaveDisplay.text = `Welle: ${this.waveManager.waveCount + 1}`;
-    if (EnemyManager.enemies.length == 0 && this.currentState == "enemiesAlive")
-      this.gonextWave();
+
+    if (this.isMine) {
+      if (EnemyManager.enemies.length == 0 && this.currentState == "enemiesAlive")
+        this.gonextWave();
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { Behaviour, GameObject, getComponentInChildren, getComponentsInChildren, InputField, LogType, SceneSwitcher, serializable, showBalloonMessage, SyncedRoom } from "@needle-tools/engine";
+import { Behaviour, GameObject, getComponentInChildren, getComponentsInChildren, InputField, LogType, OwnershipModel, SceneSwitcher, serializable, showBalloonMessage, SyncedRoom } from "@needle-tools/engine";
 import { Database } from "./Database";
 import { KillCounter } from "./KillCounter";
 

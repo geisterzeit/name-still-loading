@@ -45,17 +45,28 @@ export class Enemy extends Behaviour {
   }
 
   takeDamage(damage: number): boolean {
-    //console.log("Damage", damage);
-    let oldHealth = this.health;
-    let oldShield = this.shieldHealth;
     if (this.shieldHealth > 0) {
       this.shieldHealth -= damage;
     } else {
       this.health -= damage;
     }
 
+    if (this.health <= 0) {
+      this.die();
+      return true;
+    }
+    return false;
+  }
+
+  updateDisplays() {
+    let oldHealth = this.health;
+    let oldShield = this.shieldHealth;
+
+    console.log(this.shieldDisplay)
+    console.log(this.healthDisplay)
+
     if (this.shieldDisplay) {
-      this.shieldDisplay.scale.add(
+      this.shieldDisplay.scale?.add(
         new Vector3(
           this.shieldHealth / this.maxShield - oldShield / this.maxShield,
           0,
@@ -64,7 +75,7 @@ export class Enemy extends Behaviour {
       );
     }
     if (this.healthDisplay) {
-      this.healthDisplay.scale.add(
+      this.healthDisplay.scale?.add(
         new Vector3(
           this.health / this.maxHealth - oldHealth / this.maxHealth,
           0,
@@ -72,12 +83,6 @@ export class Enemy extends Behaviour {
         )
       );
     }
-
-    if (this.health <= 0) {
-      this.die();
-      return true;
-    }
-    return false;
   }
 
   private die(): void {
