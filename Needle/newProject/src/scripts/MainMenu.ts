@@ -7,8 +7,6 @@ export class MainMenu extends Behaviour {
     mainScreen: GameObject | null = null;
     @serializable(GameObject)
     statsScreen: GameObject | null = null;
-    @serializable(GameObject)
-    highscoreScreen: GameObject | null = null;
 
     private switcher?: SceneSwitcher;
     private syncedRoom?: SyncedRoom;
@@ -22,15 +20,12 @@ export class MainMenu extends Behaviour {
         if (this.statsScreen) {
             this.statsScreen.activeSelf = false;
         }
-        if (this.highscoreScreen) {
-            this.highscoreScreen.activeSelf = false;
-        }
     }
 
     public playGame(): void {
         let playerName = getComponentInChildren(this.gameObject, InputField);
         if (playerName && playerName.text.length > 0) {
-            showBalloonMessage("Nice name!", LogType.Warn);
+            //showBalloonMessage("Nice name!", LogType.Warn);
             Database.instance.username = playerName.text
 
             this.syncedRoom ??= this.getRoom();
@@ -66,16 +61,8 @@ export class MainMenu extends Behaviour {
         }
     }
 
-    public displayHighscore(): void {
-        if (this.highscoreScreen && this.mainScreen) {
-            this.mainScreen.activeSelf = false;
-            this.highscoreScreen.activeSelf = true;
-        }
-    }
-
     public displayMain(): void {
-        if (this.highscoreScreen && this.statsScreen && this.mainScreen) {
-            this.highscoreScreen.activeSelf = false;
+        if (this.statsScreen && this.mainScreen) {
             this.statsScreen.activeSelf = false;
             this.mainScreen.activeSelf = true;
         }
