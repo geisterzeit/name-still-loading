@@ -109,14 +109,12 @@ export class Tower extends Behaviour {
             Database.instance.updateTowerKills(this.type, 1);
           }
         }
-
       }
 
       if (enemy) {
-        enemy.updateDisplays()
+        enemy.updateDisplays();
       }
     }
-
   }
 
   lockIn(): void {

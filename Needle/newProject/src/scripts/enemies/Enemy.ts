@@ -30,14 +30,18 @@ export class Enemy extends Behaviour {
   deathGold: number = 10;
 
   start(): void {
-    this.health = this.health + (this.health * WaveManager.getWaveCount() * 0.75);
+    this.health = this.health + this.health * WaveManager.getWaveCount() * 0.75;
     this.maxHealth = this.health;
     this.maxShield = this.shieldHealth;
     EnemyManager.registerEnemy(this.gameObject);
     this.healthDisplay =
-      this.gameObject.getComponentsInChildren(RectTransform).find(obj => obj.name === "HealthBar") ?? null;
+      this.gameObject
+        .getComponentsInChildren(RectTransform)
+        .find((obj) => obj.name === "HealthBar") ?? null;
     this.shieldDisplay =
-      this.gameObject.getComponentsInChildren(RectTransform).find(obj => obj.name === "ShieldBar") ?? null;
+      this.gameObject
+        .getComponentsInChildren(RectTransform)
+        .find((obj) => obj.name === "ShieldBar") ?? null;
   }
 
   onDestroy(): void {
@@ -59,25 +63,19 @@ export class Enemy extends Behaviour {
   }
 
   updateDisplays() {
-    let oldHealth = this.health;
-    let oldShield = this.shieldHealth;
-
-    console.log(this.shieldDisplay)
-    console.log(this.healthDisplay)
-
     if (this.shieldDisplay) {
-      this.shieldDisplay.scale?.add(
+      this.shieldDisplay.scale.add(
         new Vector3(
-          this.shieldHealth / this.maxShield - oldShield / this.maxShield,
+          this.shieldHealth / this.maxShield - this.shieldDisplay.scale.x,
           0,
           0
         )
       );
     }
     if (this.healthDisplay) {
-      this.healthDisplay.scale?.add(
+      this.healthDisplay.scale.add(
         new Vector3(
-          this.health / this.maxHealth - oldHealth / this.maxHealth,
+          this.health / this.maxHealth - this.healthDisplay.scale.x,
           0,
           0
         )
