@@ -64,18 +64,18 @@ export class Enemy extends Behaviour {
 
   updateDisplays() {
     if (this.shieldDisplay) {
-      this.shieldDisplay.scale.add(
+      this.shieldDisplay.scale?.add(
         new Vector3(
-          this.shieldHealth / this.maxShield - this.shieldDisplay.scale.x,
+          this.shieldHealth / this.maxShield - this.shieldDisplay.scale?.x,
           0,
           0
         )
       );
     }
     if (this.healthDisplay) {
-      this.healthDisplay.scale.add(
+      this.healthDisplay.scale?.add(
         new Vector3(
-          this.health / this.maxHealth - this.healthDisplay.scale.x,
+          this.health / this.maxHealth - this.healthDisplay.scale?.x,
           0,
           0
         )
@@ -84,7 +84,7 @@ export class Enemy extends Behaviour {
   }
 
   private die(): void {
-    this.gameObject.destroy();
+    this.gameObject?.destroy();
     Gold.addGold(this.deathGold / 4);
   }
 }
